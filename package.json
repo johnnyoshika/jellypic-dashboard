@@ -2,6 +2,7 @@
   "name": "jellypic-dashboard-cra",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:56000",
   "dependencies": {
     "normalizr": "^3.2.4",
     "react": "^16.2.0",
