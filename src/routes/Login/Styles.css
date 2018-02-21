@@ -1,0 +1,26 @@
+.login-container {
+  display:grid;
+  grid-template-columns: auto 448px auto;
+}
+
+.login-main {
+  border: 1px solid #ddd;
+  background: #fff;
+  margin: 40px 0;
+  padding: 60px 20px;
+}
+
+@media (max-width: 619px) {
+  .login-container {
+    grid-template-columns: auto 348px auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-container {
+    grid-template-columns: 12px auto 12px;
+  }
+  .login-main {
+    padding: 60px 0;
+  }
+}
