@@ -1,7 +1,13 @@
-import React from 'react'
+import { connect } from 'react-redux'
+import { authenticate } from '../../actions/session'
+import View from './View'
 
-export default () => (
-  <div className="text-center">
-    Session
-  </div>
-)
+const mapDispatchToProps = {
+  authenticate
+}
+
+const mapStateToProps = (state) => ({
+  session: state.session
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(View)
