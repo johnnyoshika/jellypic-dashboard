@@ -1,17 +1,14 @@
-import React from 'react'
-import './Styles.css'
+import { connect } from 'react-redux'
+import { checkFacebook, loginWithFacebook } from '../../actions/login'
+import View from './View'
 
-export default () => (
-  <div className="login-container">
-    <div className="gutter" />
-    <div className="login-main">
-      <div className="font-lobster text-center mb-40">
-        Jellypic
-      </div>
-      <div className="text-center">
-        <button className="btn btn-primary btn-lg">Log in with Facebook</button>
-      </div>
-    </div>
-    <div className="gutter" />
-  </div>
-)
+const mapDispatchToProps = {
+  checkFacebook,
+  loginWithFacebook
+}
+
+const mapStateToProps = (state) => ({
+  login: state.login
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(View)
