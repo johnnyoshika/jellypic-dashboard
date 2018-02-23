@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Route, Link, NavLink } from "react-router-dom";
 import ErrorMessage from '../../components/ErrorMessage'
 import Uploader from '../../components/Uploader'
+import Home from './Home'
+import Post from './Post'
+import Profile from './Profile'
 import './Styles.css'
 
 class View extends Component {
@@ -86,7 +89,9 @@ class View extends Component {
         </div>
         {this.renderUploaderState()}
         <div>
-
+          <Route exact path="/" component={Home} />
+          <Route path="/posts" component={Post} />
+          <Route path="/profile" component={Profile} />
         </div>
       </div>
     )
