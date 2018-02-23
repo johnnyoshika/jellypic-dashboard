@@ -7,7 +7,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  session: state.session
+  session: state.session,
+  uploader: state.uploader
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(View)
