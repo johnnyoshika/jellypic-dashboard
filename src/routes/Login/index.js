@@ -8,7 +8,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  login: state.login
+  login: state.routes.login
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(View)

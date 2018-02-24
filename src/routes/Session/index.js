@@ -7,7 +7,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  session: state.session,
+  session: state.routes.session,
   uploader: state.uploader
 })
 
