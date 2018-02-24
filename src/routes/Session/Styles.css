@@ -1,10 +1,10 @@
 .page {
-  display:grid;
+  display: grid;
   grid-template-rows: 77px auto;
 }
 .header {
-  background:#fff;
-  display:grid;
+  background: #fff;
+  display: grid;
   grid-template-columns: auto 935px auto;
   border-bottom: 1px solid #ddd;
 }
@@ -14,7 +14,7 @@
   grid-template-columns: auto auto;
 }
 .header-content-icons {
-  display:grid;
+  display: grid;
   grid-template-columns: auto 64px 78px 74px 64px;
   justify-items: end;
 }
@@ -23,7 +23,7 @@
 }
 
 .uploader-state {
-  display:grid;
+  display: grid;
   grid-template-columns: auto 602px auto;
   margin-top: 60px;
 }
@@ -42,7 +42,7 @@
 
 @media (max-width: 735px) {
   .page {
-    display:grid;
+    display: grid;
     grid-template-rows: 57px auto;
   }
 }

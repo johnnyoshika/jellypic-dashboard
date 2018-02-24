@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import Session from './routes/Session'
-import Login from './routes/Login'
-import ReduxToastr from 'react-redux-toastr'
-import './Toastr.css'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Session from './routes/Session';
+import Login from './routes/Login';
+import ReduxToastr from 'react-redux-toastr';
+import './Toastr.css';
 
 class App extends Component {
   render() {
@@ -24,10 +24,11 @@ class App extends Component {
           position="top-right"
           transitionIn="bounceIn"
           transitionOut="bounceOut"
-          progressBar={false} />
+          progressBar={false}
+        />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

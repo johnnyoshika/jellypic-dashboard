@@ -1,5 +1,5 @@
 .login-container {
-  display:grid;
+  display: grid;
   grid-template-columns: auto 448px auto;
 }
 

@@ -1,8 +1,8 @@
-import { ENTITIES_ADD } from './actionTypes'
+import { ENTITIES_ADD } from './actionTypes';
 
-const addEntities = (entities) => ({
+const addEntities = entities => ({
   type: ENTITIES_ADD,
   payload: entities
-})
+});
 
-export { addEntities }
+export { addEntities };

@@ -1,24 +1,24 @@
-import { ROUTE_LOGIN_STATE } from './actionTypes'
+import { ROUTE_LOGIN_STATE } from './actionTypes';
 
-const changeState = (state) => {
+const changeState = state => {
   return {
     type: ROUTE_LOGIN_STATE,
     payload: {
       state: state,
       error: null
     }
-  }
-}
+  };
+};
 
-const loginFailed = (message) => {
+const loginFailed = message => {
   return {
     type: ROUTE_LOGIN_STATE,
     payload: {
       state: 'error',
       error: message
     }
-  }
-}
+  };
+};
 
 const loginSucceeded = () => {
   return {
@@ -27,33 +27,32 @@ const loginSucceeded = () => {
       state: 'success',
       error: null
     }
-  }
-}
+  };
+};
 
 const checkFacebook = () => {
   return (dispatch, getState) => {
-    dispatch(changeState('processing'))
+    dispatch(changeState('processing'));
 
     ensureFacebookSdkLoaded(() => {
-      window.FB.getLoginStatus((response) => {
-        checkFacebookLoginStatus(dispatch, response)
-      })
-    })
-  }
-}
+      window.FB.getLoginStatus(response => {
+        checkFacebookLoginStatus(dispatch, response);
+      });
+    });
+  };
+};
 
 const loginWithFacebook = () => {
   return (dispatch, getState) => {
-    dispatch(changeState('processing'))
-    window.FB.login((response) => {
-      checkFacebookLoginStatus(dispatch, response)
-    })
-  }
-}
+    dispatch(changeState('processing'));
+    window.FB.login(response => {
+      checkFacebookLoginStatus(dispatch, response);
+    });
+  };
+};
 
-const ensureFacebookSdkLoaded = (callback) => {
-  if (window.fbAsyncInit)
-    return callback()
+const ensureFacebookSdkLoaded = callback => {
+  if (window.fbAsyncInit) return callback();
 
   window.fbAsyncInit = () => {
     window.FB.init({
@@ -61,20 +60,24 @@ const ensureFacebookSdkLoaded = (callback) => {
       cookie: false,
       xfbml: false,
       version: 'v2.8'
-    })
-    callback()
-  }
+    });
+    callback();
+  };
 
   /*eslint-disable */
-  (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+  (function(d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = '//connect.facebook.net/en_US/sdk.js';
     fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'))
+  })(document, 'script', 'facebook-jssdk');
   /*eslint-enable */
-}
+};
 
 const checkFacebookLoginStatus = (dispatch, response) => {
   if (response.status === 'connected') {
@@ -89,15 +92,15 @@ const checkFacebookLoginStatus = (dispatch, response) => {
         }
     }
     */
-    dispatch(login(response.authResponse.accessToken))
+    dispatch(login(response.authResponse.accessToken));
   } else {
-    dispatch(changeState('ready'))
+    dispatch(changeState('ready'));
   }
-}
+};
 
-const login = (accessToken) => {
+const login = accessToken => {
   return (dispatch, getState) => {
-    dispatch(changeState('processing'))
+    dispatch(changeState('processing'));
 
     return fetch('/api/sessions', {
       method: 'POST',
@@ -111,16 +114,16 @@ const login = (accessToken) => {
     })
       .then(response => {
         if (response.ok) {
-          dispatch(loginSucceeded())
-          return
+          dispatch(loginSucceeded());
+          return;
         }
 
         response.json().then(json => {
-          dispatch(loginFailed(json.message || 'Error logging in.'))
-        })
+          dispatch(loginFailed(json.message || 'Error logging in.'));
+        });
       })
-      .catch(error => dispatch(loginFailed(error.message)))
-  }
-}
+      .catch(error => dispatch(loginFailed(error.message)));
+  };
+};
 
-export { checkFacebook, loginWithFacebook }
+export { checkFacebook, loginWithFacebook };

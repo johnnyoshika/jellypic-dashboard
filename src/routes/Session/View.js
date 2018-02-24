@@ -1,54 +1,56 @@
-import React, { Component } from 'react'
-import { Route, Link, NavLink } from "react-router-dom";
-import ErrorMessage from '../../components/ErrorMessage'
-import Uploader from '../../components/Uploader'
-import Home from './Home'
-import Post from './Post'
-import Profile from './Profile'
-import './Styles.css'
+import React, { Component } from 'react';
+import { Route, Link, NavLink } from 'react-router-dom';
+import ErrorMessage from '../../components/ErrorMessage';
+import Uploader from '../../components/Uploader';
+import Home from './Home';
+import Post from './Post';
+import Profile from './Profile';
+import './Styles.css';
 
 class View extends Component {
-  constructor () {
-    super()
+  constructor() {
+    super();
 
     // REACT ES6 classes don't autobind, so bind it in the constructor
     // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
-    this.onTryAgainClick = this.onTryAgainClick.bind(this)
+    this.onTryAgainClick = this.onTryAgainClick.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.session.state !== 'authenticated')
-      this.props.authenticate()
+    if (this.props.session.state !== 'authenticated') this.props.authenticate();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.session.state === 'anonymous')
-      this.props.history.replace('/login')
+      this.props.history.replace('/login');
   }
 
-  onTryAgainClick () {
-    this.props.history.push('/login')
+  onTryAgainClick() {
+    this.props.history.push('/login');
   }
 
-  renderError () {
+  renderError() {
     return (
       <div className="login-container">
         <div className="gutter" />
         <div className="login-main">
-          <div className="font-lobster text-center mb-40">
-            Jellypic
-          </div>
+          <div className="font-lobster text-center mb-40">Jellypic</div>
           <div className="text-center">
-            <button className="btn btn-primary btn-lg" onClick={this.onTryAgainClick}>Try again!</button>
+            <button
+              className="btn btn-primary btn-lg"
+              onClick={this.onTryAgainClick}
+            >
+              Try again!
+            </button>
             <ErrorMessage message={this.props.session.error} />
           </div>
         </div>
         <div className="gutter" />
       </div>
-    )
+    );
   }
 
-  renderSpinner () {
+  renderSpinner() {
     return (
       <div className="login-container mt-80">
         <div className="gutter" />
@@ -57,10 +59,10 @@ class View extends Component {
         </div>
         <div className="gutter" />
       </div>
-    )
+    );
   }
 
-  renderPage () {
+  renderPage() {
     return (
       <div className="page">
         <div className="header">
@@ -72,16 +74,24 @@ class View extends Component {
             <div className="header-content-icons text-right">
               <div />
               <div>
-                <Link to="/"><i className="fa fa-home fa-2x" aria-hidden="true" /></Link>
+                <Link to="/">
+                  <i className="fa fa-home fa-2x" aria-hidden="true" />
+                </Link>
               </div>
               <div>
-                <Uploader><i className="fa fa-cloud-upload fa-2x" aria-hidden="true" /></Uploader>
+                <Uploader>
+                  <i className="fa fa-cloud-upload fa-2x" aria-hidden="true" />
+                </Uploader>
               </div>
               <div>
-                <NavLink to="/profile" activeClassName="nav-active"><i className="fa fa-heart fa-2x" aria-hidden="true" /></NavLink>
+                <NavLink to="/profile" activeClassName="nav-active">
+                  <i className="fa fa-heart fa-2x" aria-hidden="true" />
+                </NavLink>
               </div>
               <div>
-                <NavLink to="/profile" activeClassName="nav-active"><i className="fa fa-user fa-2x" aria-hidden="true" /></NavLink>
+                <NavLink to="/profile" activeClassName="nav-active">
+                  <i className="fa fa-user fa-2x" aria-hidden="true" />
+                </NavLink>
               </div>
             </div>
           </div>
@@ -94,41 +104,36 @@ class View extends Component {
           <Route path="/profile" component={Profile} />
         </div>
       </div>
-    )
+    );
   }
 
-  renderUploaderState () {
-    if (this.props.uploader.state === 'idle')
-      return null
+  renderUploaderState() {
+    if (this.props.uploader.state === 'idle') return null;
 
     return (
       <div className="uploader-state">
         <div className="gutter" />
         <div className="uploader-state-content">
-          {
-            this.props.uploader.state === 'error' &&
-              <div className="error">Error: {this.props.uploader.error}</div>
-          }
-          {
-            this.props.uploader.state === 'saving' &&
-              <div className="progress">Finishing up...</div>
-          }
+          {this.props.uploader.state === 'error' && (
+            <div className="error">Error: {this.props.uploader.error}</div>
+          )}
+          {this.props.uploader.state === 'saving' && (
+            <div className="progress">Finishing up...</div>
+          )}
         </div>
         <div className="gutter" />
       </div>
-    )
+    );
   }
 
-  render () {
+  render() {
     return (() => {
       if (this.props.session.state === 'authenticated')
-        return this.renderPage()
-      else if (this.props.session.state === 'error')
-        return this.renderError()
-      else
-        return this.renderSpinner()
-    })()
+        return this.renderPage();
+      else if (this.props.session.state === 'error') return this.renderError();
+      else return this.renderSpinner();
+    })();
   }
 }
 
-export default View
+export default View;

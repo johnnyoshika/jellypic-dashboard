@@ -1,13 +1,13 @@
-import { connect } from 'react-redux'
-import { savePost } from '../../actions/uploader'
-import View from './View'
+import { connect } from 'react-redux';
+import { savePost } from '../../actions/uploader';
+import View from './View';
 
 const mapDispatchToProps = {
   savePost
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   uploader: state.uploader
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(View)
+export default connect(mapStateToProps, mapDispatchToProps)(View);
