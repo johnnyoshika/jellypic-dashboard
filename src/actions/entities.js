@@ -1,7 +1,7 @@
-import { ADD_ENTITIES } from './actionTypes'
+import { ENTITIES_ADD } from './actionTypes'
 
 const addEntities = (entities) => ({
-  type: ADD_ENTITIES,
+  type: ENTITIES_ADD,
   payload: entities
 })
 

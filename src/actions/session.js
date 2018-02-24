@@ -1,11 +1,11 @@
 import { normalize } from 'normalizr'
 import { user as userSchema } from '../store/schema'
 import { addEntities } from './entities'
-import { CHANGE_SESSION_STATE } from './actionTypes'
+import { ROUTE_SESSION_STATE } from './actionTypes'
 
 const changeState = (state) => {
   return {
-    type    : CHANGE_SESSION_STATE,
+    type    : ROUTE_SESSION_STATE,
     payload : {
       state,
       error: null,
@@ -16,7 +16,7 @@ const changeState = (state) => {
 
 const setSession = (userId) => {
   return {
-    type: CHANGE_SESSION_STATE,
+    type: ROUTE_SESSION_STATE,
     payload: {
       state: 'authenticated',
       user: userId
@@ -26,7 +26,7 @@ const setSession = (userId) => {
 
 const authenticationFailed = (message) => {
   return {
-    type: CHANGE_SESSION_STATE,
+    type: ROUTE_SESSION_STATE,
     payload: {
       state: 'error',
       error: message,

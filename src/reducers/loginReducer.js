@@ -1,7 +1,7 @@
-import { CHANGE_LOGIN_STATE } from '../actions/actionTypes'
+import { ROUTE_LOGIN_STATE } from '../actions/actionTypes'
 
 const ACTION_HANDLERS = {
-  [CHANGE_LOGIN_STATE]: (state, action) => ({ ...state, ...action.payload })
+  [ROUTE_LOGIN_STATE]: (state, action) => ({ ...state, ...action.payload })
 }
 
 const initialState = {

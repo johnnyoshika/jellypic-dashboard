@@ -1,7 +1,7 @@
-import { CHANGE_SESSION_STATE } from '../actions/actionTypes'
+import { ROUTE_SESSION_STATE } from '../actions/actionTypes'
 
 const ACTION_HANDLERS = {
-  [CHANGE_SESSION_STATE]: (state, action) => ({ ...state, ...action.payload })
+  [ROUTE_SESSION_STATE]: (state, action) => ({ ...state, ...action.payload })
 }
 
 const initialState = {

@@ -1,8 +1,8 @@
-import { CHANGE_LOGIN_STATE } from './actionTypes'
+import { ROUTE_LOGIN_STATE } from './actionTypes'
 
 const changeState = (state) => {
   return {
-    type: CHANGE_LOGIN_STATE,
+    type: ROUTE_LOGIN_STATE,
     payload: {
       state: state,
       error: null
@@ -12,7 +12,7 @@ const changeState = (state) => {
 
 const loginFailed = (message) => {
   return {
-    type: CHANGE_LOGIN_STATE,
+    type: ROUTE_LOGIN_STATE,
     payload: {
       state: 'error',
       error: message
@@ -22,7 +22,7 @@ const loginFailed = (message) => {
 
 const loginSucceeded = () => {
   return {
-    type: CHANGE_LOGIN_STATE,
+    type: ROUTE_LOGIN_STATE,
     payload: {
       state: 'success',
       error: null
