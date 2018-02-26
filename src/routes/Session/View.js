@@ -74,9 +74,9 @@ class View extends Component {
             <div className="header-content-icons text-right">
               <div />
               <div>
-                <Link to="/">
+                <NavLink to="/" exact activeClassName="nav-active">
                   <i className="fa fa-home fa-2x" aria-hidden="true" />
-                </Link>
+                </NavLink>
               </div>
               <div>
                 <Uploader>
