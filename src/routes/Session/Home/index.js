@@ -1,3 +1,14 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import { fetchNext } from '../../../actions/home';
+import View from './View';
 
-export default () => <div>Home</div>;
+const mapDispatchToProps = {
+  fetchNext
+};
+
+const mapStateToProps = state => ({
+  home: state.routes.home,
+  entities: state.entities
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(View);
