@@ -9,6 +9,7 @@ export default () => (
         <div className="profile-headline-photo">
           <img
             className="image-100"
+            alt=""
             src="http://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_152,r_max,w_152/v1427815401/bd0ar4wsjxmqtqvqcycf.png"
           />
         </div>
@@ -34,30 +35,35 @@ export default () => (
         <div className="profile-photo">
           <img
             className="image-100"
+            alt=""
             src="http://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
           />
         </div>
         <div className="profile-photo">
           <img
             className="image-100"
+            alt=""
             src="http://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
           />
         </div>
         <div className="profile-photo">
           <img
             className="image-100"
+            alt=""
             src="http://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
           />
         </div>
         <div className="profile-photo">
           <img
             className="image-100"
+            alt=""
             src="http://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
           />
         </div>
         <div className="profile-photo">
           <img
             className="image-100"
+            alt=""
             src="http://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
           />
         </div>

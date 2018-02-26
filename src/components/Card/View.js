@@ -96,7 +96,7 @@ class Card extends Component {
         <div className="card-heading">
           <div className="card-heading-user">
             <div className="card-heading-user-image">
-              <img src={this.props.post.user.thumbUrl} />
+              <img src={this.props.post.user.thumbUrl} alt={this.props.post.user.username} />
             </div>
             <div className="card-heading-user-name">
               <a href="">{this.props.post.user.username}</a>
