@@ -1,0 +1,52 @@
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+}
+.card-heading {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  padding: 14px 20px;
+}
+.card-heading-user {
+  display: grid;
+  grid-template-columns: 45px auto;
+  align-items: center;
+}
+.card-heading-user-name {
+  font-weight: bold;
+}
+.card-info {
+  padding: 24px;
+  display: grid;
+  grid-gap: 12px;
+}
+.card-info-likes {
+  font-weight: bold;
+}
+.card-info-comments {
+  display: grid;
+  grid-gap: 6px;
+}
+.card-info-comment-user {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.card-info-add-comment {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 12px;
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: 45px auto;
+  align-items: center;
+}
+.card-info-add-comment-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+}
+.card-info-add-comment-input[disabled] {
+  background: none;
+  opacity: 0.3;
+}
