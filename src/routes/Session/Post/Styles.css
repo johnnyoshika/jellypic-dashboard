@@ -1,0 +1,19 @@
+.post-container {
+  display: grid;
+  grid-template-columns: auto 602px auto;
+}
+.post-main {
+  display: grid;
+  padding: 60px 0;
+  grid-gap: 60px;
+}
+
+@media (max-width: 619px) {
+  .post-container {
+    grid-template-columns: 0 auto 0;
+  }
+  .post-main {
+    padding: 20px 0;
+    grid-gap: 20px;
+  }
+}

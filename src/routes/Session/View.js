@@ -100,7 +100,7 @@ class View extends Component {
         {this.renderUploaderState()}
         <div>
           <Route exact path="/" component={Home} />
-          <Route path="/posts" component={Post} />
+          <Route path="/posts/:id" component={Post} />
           <Route path="/profile" component={Profile} />
         </div>
       </div>
