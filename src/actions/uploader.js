@@ -1,9 +1,5 @@
-import { normalize } from 'normalizr';
-import { post as postSchema } from '../store/schema';
-import { addEntities } from './entities';
+import { prependPosts } from './entities';
 import { UPLOADER_STATE } from './actionTypes';
-
-// import { prependPostIds } from '../routes/Session/Home/modules/home' // feels ugly reaching in like this
 
 const changeState = state => {
   return {
@@ -67,10 +63,8 @@ const savePost = cloudinaryPublicIds => {
             return;
           }
 
-          const data = normalize(json.data, [postSchema]);
           dispatch(saveSucceeded());
-          dispatch(addEntities(data.entities));
-          // dispatch(prependPostIds(data.result));
+          dispatch(prependPosts(json.data));
         });
       })
       .catch(error => dispatch(saveFailed(error.message)));

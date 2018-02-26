@@ -1,18 +1,18 @@
 import {
   ROUTE_HOME_STATE,
-  ROUTE_HOME_PREPEND,
-  ROUTE_HOME_APPEND
+  POSTS_PREPEND,
+  POSTS_APPEND
 } from '../actions/actionTypes';
 
 const ACTION_HANDLERS = {
   [ROUTE_HOME_STATE]: (state, action) => ({ ...state, ...action.payload }),
-  [ROUTE_HOME_PREPEND]: (state, action) => ({
+  [POSTS_PREPEND]: (state, action) => ({
     ...state,
-    ...{ posts: [...action.payload.ids, ...state.posts] }
+    ...{ posts: [...action.payload.map(p => p.id), ...state.posts] }
   }),
-  [ROUTE_HOME_APPEND]: (state, action) => ({
+  [POSTS_APPEND]: (state, action) => ({
     ...state,
-    ...{ posts: [...state.posts, ...action.payload.ids] }
+    ...{ posts: [...state.posts, ...action.payload.map(p => p.id)] }
   })
 };
 

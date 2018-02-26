@@ -1,11 +1,5 @@
-import { normalize } from 'normalizr';
-import { post as postSchema } from '../store/schema';
-import { addEntities } from './entities';
-import {
-  ROUTE_HOME_STATE,
-  ROUTE_HOME_PREPEND,
-  ROUTE_HOME_APPEND
-} from './actionTypes';
+import { appendPosts } from './entities';
+import { ROUTE_HOME_STATE } from './actionTypes';
 
 const changeState = state => {
   return {
@@ -36,24 +30,6 @@ const changeNextUrl = nextUrl => {
   };
 };
 
-const appendPostIds = ids => {
-  return {
-    type: ROUTE_HOME_APPEND,
-    payload: {
-      ids
-    }
-  };
-};
-
-const prependPostIds = ids => {
-  return {
-    type: ROUTE_HOME_PREPEND,
-    payload: {
-      ids
-    }
-  };
-};
-
 const fetchNext = () => {
   return (dispatch, getState) => {
     dispatch(changeState('loading'));
@@ -73,9 +49,7 @@ const fetchNext = () => {
 
         response.json().then(json => {
           if (response.ok) {
-            const data = normalize(json.data, [postSchema]);
-            dispatch(addEntities(data.entities));
-            dispatch(appendPostIds(data.result));
+            dispatch(appendPosts(json.data));
             dispatch(changeNextUrl(json.pagination.nextUrl));
             dispatch(changeState('idle'));
           } else {
@@ -87,4 +61,4 @@ const fetchNext = () => {
   };
 };
 
-export { prependPostIds, fetchNext };
+export { fetchNext };
