@@ -1,0 +1,8 @@
+.subscriber-state {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 60px;
+}
+.subscriber-state-content {
+  align-items: center;
+}

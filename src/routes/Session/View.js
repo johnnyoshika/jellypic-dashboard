@@ -4,6 +4,7 @@ import ErrorMessage from '../../components/ErrorMessage';
 import Uploader from '../../components/Uploader';
 import Home from './Home';
 import Post from './Post';
+import Subscription from './Subscription';
 import Profile from './Profile';
 import './Styles.css';
 
@@ -84,8 +85,8 @@ class View extends Component {
                 </Uploader>
               </div>
               <div>
-                <NavLink to="/profile" activeClassName="nav-active">
-                  <i className="fa fa-heart fa-2x" aria-hidden="true" />
+                <NavLink to="/subscription" activeClassName="nav-active">
+                  <i className="fa fa-bell fa-2x" aria-hidden="true" />
                 </NavLink>
               </div>
               <div>
@@ -101,6 +102,7 @@ class View extends Component {
         <div>
           <Route exact path="/" component={Home} />
           <Route path="/posts/:id" component={Post} />
+          <Route path="/subscription" component={Subscription} />
           <Route path="/profile" component={Profile} />
         </div>
       </div>
