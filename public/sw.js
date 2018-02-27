@@ -1,20 +1,9 @@
-var version = 'v1';
+importScripts(
+  'https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js'
+);
 
-self.addEventListener('install', e => {
-  console.log(
-    'SW version %s Installed at',
-    version,
-    new Date().toLocaleTimeString()
-  );
-});
-
-self.addEventListener('activate', e => {
-  console.log(
-    'SW version %s Activated at',
-    version,
-    new Date().toLocaleTimeString()
-  );
-});
+// Workbox will populate this list (as defined in workbox-config.js) during build.
+workbox.precaching.precacheAndRoute([]);
 
 self.addEventListener('push', e => {
   var payload = e.data.json();
