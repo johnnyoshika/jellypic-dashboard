@@ -3,6 +3,16 @@
   "name": "Jellypic Photo Sharing",
   "icons": [
     {
+      "src": "/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
       "src": "/images/786b9e77-2122-8b32-72ab-c3797189bb67.webPlatform.png",
       "sizes": "48x48",
       "type": "image/png"
