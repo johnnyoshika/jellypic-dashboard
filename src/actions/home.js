@@ -33,7 +33,7 @@ const changeNextUrl = nextUrl => {
 const fetchLatest = () => {
   return (dispatch, getState) =>
     fetchPosts(dispatch, getState, getState().routes.home.url)
-      .then(posts => dispatch(replacePosts(posts)))
+      .then(posts => posts.length && dispatch(replacePosts(posts)))
       .catch(error => {
         if (getState().routes.home.posts.length)
           dispatch(changeState('idle'));
@@ -45,12 +45,13 @@ const fetchLatest = () => {
 const fetchNext = () => {
   return (dispatch, getState) =>
     fetchPosts(dispatch, getState, getState().routes.home.nextUrl)
-      .then(posts => dispatch(appendPosts(posts)))
+      .then(posts => posts.length && dispatch(appendPosts(posts)))
       .catch(error => dispatch(fetchFailed(error.message)));
 };
 
 const fetchPosts = (dispatch, getState, url) => {
   if (!url) return Promise.resolve({ data: [] });
+  if (getState().routes.home.state === 'loading') return Promise.resolve({ data: [] });
 
   dispatch(changeState('loading'));
 

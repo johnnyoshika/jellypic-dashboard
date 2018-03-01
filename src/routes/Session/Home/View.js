@@ -5,8 +5,34 @@ import { selectPost } from '../../../actions/posts';
 import './Styles.css';
 
 class HomeView extends Component {
+  constructor() {
+    super();
+
+    // REACT ES6 classes don't autobind, so bind it in the constructor
+    // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
+    this.onScroll = this.onScroll.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchLatest();
+    window.addEventListener('scroll', this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  onScroll() {
+    if (!this.props.home.posts.length)
+      return;
+
+    if ((window.innerHeight + window.scrollY) < (document.body.offsetHeight - 500))
+      return;
+
+    if (this.props.home.state === 'error')
+      return;
+
+    this.props.fetchNext();
   }
 
   renderError() {
