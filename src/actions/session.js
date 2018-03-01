@@ -43,16 +43,10 @@ const authenticate = () => {
       credentials: 'include'
     })
       .then(response => {
-        if (
-          response.headers
-            .get('Content-Type')
-            .split(';')[0]
-            .toLowerCase()
-            .trim() !== 'application/json'
-        )
+        if (!response.headers.get('Content-Type').includes('application/json'))
           throw new Error('Error connecting to the server. Please try again!');
 
-        response.json().then(json => {
+        return response.json().then(json => {
           if (response.ok) {
             const data = normalize(json, userSchema);
             dispatch(addEntities(data.entities));

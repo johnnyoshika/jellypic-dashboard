@@ -46,20 +46,11 @@ const save = (postId, method) => {
       credentials: 'include'
     })
       .then(response => {
-        if (
-          response.headers
-            .get('Content-Type')
-            .split(';')[0]
-            .toLowerCase()
-            .trim() !== 'application/json'
-        )
+        if (!response.headers.get('Content-Type').includes('application/json'))
           throw new Error('Error connecting to the server. Please try again!');
 
-        response.json().then(json => {
-          if (!response.ok) {
-            dispatch(saveFailed(postId, json.message));
-            return;
-          }
+        return response.json().then(json => {
+          if (!response.ok) throw new Error(json.message);
 
           const data = normalize(json, postSchema);
           dispatch(saveSucceeded(postId));

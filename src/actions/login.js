@@ -118,8 +118,11 @@ const login = accessToken => {
           return;
         }
 
-        response.json().then(json => {
-          dispatch(loginFailed(json.message || 'Error logging in.'));
+        if (!response.headers.get('Content-Type').includes('application/json'))
+          throw new Error('Error connecting to the server. Please try again!');
+
+        return response.json().then(json => {
+          throw new Error(json.message || 'Error logging in.');
         });
       })
       .catch(error => dispatch(loginFailed(error.message)));
