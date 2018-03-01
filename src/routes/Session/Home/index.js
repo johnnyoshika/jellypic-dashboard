@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
-import { fetchNext } from '../../../actions/home';
+import { fetchLatest, fetchNext } from '../../../actions/home';
 import View from './View';
 
 const mapDispatchToProps = {
+  fetchLatest,
   fetchNext
 };
 

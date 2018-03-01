@@ -1,6 +1,11 @@
 import { normalize } from 'normalizr';
 import { post as postSchema } from '../store/schema';
-import { ENTITIES_ADD, POSTS_PREPEND, POSTS_APPEND } from './actionTypes';
+import {
+  ENTITIES_ADD,
+  POSTS_PREPEND,
+  POSTS_APPEND,
+  POSTS_REPLACE
+} from './actionTypes';
 
 const addEntities = entities => ({
   type: ENTITIES_ADD,
@@ -14,6 +19,11 @@ const prependPostsAction = posts => ({
 
 const appendPostsAction = posts => ({
   type: POSTS_APPEND,
+  payload: posts
+});
+
+const replacePostsAction = posts => ({
+  type: POSTS_REPLACE,
   payload: posts
 });
 
@@ -31,4 +41,11 @@ const appendPosts = posts => {
   };
 };
 
-export { addEntities, prependPosts, appendPosts };
+const replacePosts = posts => {
+  return (dispatch, getState) => {
+    dispatch(addEntities(normalize(posts, [postSchema]).entities));
+    dispatch(replacePostsAction(posts));
+  };
+};
+
+export { addEntities, prependPosts, appendPosts, replacePosts };

@@ -2,6 +2,7 @@ export const ENTITIES_ADD = 'ENTITIES_ADD';
 
 export const POSTS_APPEND = 'POSTS_APPEND';
 export const POSTS_PREPEND = 'POSTS_PREPEND';
+export const POSTS_REPLACE = 'POSTS_REPLACE';
 
 export const UPLOADER_STATE = 'UPLOADER_STATE';
 export const SUBSCRIBER_STATE = 'SUBSCRIBER_STATE';

@@ -6,7 +6,7 @@ import './Styles.css';
 
 class HomeView extends Component {
   componentDidMount() {
-    this.props.fetchNext();
+    this.props.fetchLatest();
   }
 
   renderError() {

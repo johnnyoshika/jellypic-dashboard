@@ -1,4 +1,4 @@
-import { appendPosts } from './entities';
+import { appendPosts, replacePosts } from './entities';
 import { ROUTE_HOME_STATE } from './actionTypes';
 
 const changeState = state => {
@@ -30,35 +30,44 @@ const changeNextUrl = nextUrl => {
   };
 };
 
-const fetchNext = () => {
-  return (dispatch, getState) => {
-    dispatch(changeState('loading'));
-
-    return fetch(getState().routes.home.nextUrl, {
-      credentials: 'include'
-    })
-      .then(response => {
-        if (
-          response.headers
-            .get('Content-Type')
-            .split(';')[0]
-            .toLowerCase()
-            .trim() !== 'application/json'
-        )
-          throw new Error('Error connecting to the server. Please try again!');
-
-        response.json().then(json => {
-          if (response.ok) {
-            dispatch(appendPosts(json.data));
-            dispatch(changeNextUrl(json.pagination.nextUrl));
-            dispatch(changeState('idle'));
-          } else {
-            dispatch(fetchFailed(json.message));
-          }
-        });
-      })
-      .catch(error => dispatch(fetchFailed(error.message)));
-  };
+const fetchLatest = () => {
+  return (dispatch, getState) =>
+    fetchPosts(dispatch, getState, getState().routes.home.url)
+      .then(posts => dispatch(replacePosts(posts)))
+      .catch(error => {
+        if (getState().routes.home.posts.length)
+          dispatch(changeState('idle'));
+        else
+          dispatch(fetchFailed(error.message));
+      });
 };
 
-export { fetchNext };
+const fetchNext = () => {
+  return (dispatch, getState) =>
+    fetchPosts(dispatch, getState, getState().routes.home.nextUrl)
+      .then(posts => dispatch(appendPosts(posts)))
+      .catch(error => dispatch(fetchFailed(error.message)));
+};
+
+const fetchPosts = (dispatch, getState, url) => {
+  if (!url) return Promise.resolve({ data: [] });
+
+  dispatch(changeState('loading'));
+
+  return fetch(url, {
+    credentials: 'include'
+  }).then(response => {
+    if (!response.headers.get('Content-Type').includes('application/json'))
+      throw new Error('Error connecting to the server. Please try again!');
+
+    return response.json().then(json => {
+      if (!response.ok) throw new Error(json.message);
+
+      dispatch(changeState('idle'));
+      dispatch(changeNextUrl(json.pagination.nextUrl));
+      return json.data;
+    });
+  });
+};
+
+export { fetchLatest, fetchNext };

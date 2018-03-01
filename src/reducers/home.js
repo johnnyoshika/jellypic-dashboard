@@ -1,7 +1,8 @@
 import {
   ROUTE_HOME_STATE,
   POSTS_PREPEND,
-  POSTS_APPEND
+  POSTS_APPEND,
+  POSTS_REPLACE
 } from '../actions/actionTypes';
 
 const ACTION_HANDLERS = {
@@ -13,13 +14,18 @@ const ACTION_HANDLERS = {
   [POSTS_APPEND]: (state, action) => ({
     ...state,
     ...{ posts: [...state.posts, ...action.payload.map(p => p.id)] }
+  }),
+  [POSTS_REPLACE]: (state, action) => ({
+    ...state,
+    ...{ posts: [...action.payload.map(p => p.id)] }
   })
 };
 
 const initialState = {
   state: 'idle', // loading,idle,error
   error: null,
-  nextUrl: '/api/posts',
+  url:  '/api/posts',
+  nextUrl: null,
   posts: []
 };
 
