@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../../../components/Card';
 import ErrorMessage from '../../../components/ErrorMessage';
-import { selectPost } from '../../../actions/posts';
+import { selectPost } from '../../../utils/selectors';
 
 import './Styles.css';
 

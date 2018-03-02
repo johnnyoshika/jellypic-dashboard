@@ -1,6 +1,6 @@
 import { denormalize } from 'normalizr';
 import { post } from '../store/schema';
 
-const selectPost = (state, id) => denormalize(id, post, state);
+const selectPost = (entities, id) => denormalize(id, post, entities);
 
 export { selectPost };
