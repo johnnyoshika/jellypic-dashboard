@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr';
+import request from '../utils/request';
 import { user as userSchema } from '../store/schema';
 import { addEntities } from './entities';
 import { ROUTE_SESSION_STATE } from './actionTypes';
@@ -39,26 +40,19 @@ const authenticate = () => {
   return (dispatch, getState) => {
     dispatch(changeState('checking'));
 
-    return fetch('/api/sessions/me', {
+    return request('/api/sessions/me', {
       credentials: 'include'
-    })
-      .then(response => {
-        if (!response.headers.get('Content-Type').includes('application/json'))
-          throw new Error('Error connecting to the server. Please try again!');
-
-        return response.json().then(json => {
-          if (response.ok) {
-            const data = normalize(json, userSchema);
-            dispatch(addEntities(data.entities));
-            dispatch(setSession(data.result));
-            return;
-          }
-
-          if (response.status === 401) dispatch(changeState('anonymous'));
-          else dispatch(authenticationFailed(json.message));
-        });
-      })
-      .catch(error => dispatch(authenticationFailed(error.message)));
+    }).then(
+      response => {
+        const data = normalize(response.json, userSchema);
+        dispatch(addEntities(data.entities));
+        dispatch(setSession(data.result));
+      },
+      error => {
+        if (error.status === 401) dispatch(changeState('anonymous'));
+        else dispatch(authenticationFailed(error.message));
+      }
+    );
   };
 };
 

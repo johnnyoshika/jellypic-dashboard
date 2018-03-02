@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr';
+import request from '../utils/request';
 import { post as postSchema } from '../store/schema';
 import { addEntities } from './entities';
 import { COMMENT_STATE } from './actionTypes';
@@ -51,24 +52,18 @@ const deleteComment = (postId, commentId) =>
     credentials: 'include'
   });
 
-const save = (postId, url, request) => {
+const save = (postId, url, options) => {
   return (dispatch, getState) => {
     dispatch(changeState(postId, 'saving'));
 
-    return fetch(url, request)
-      .then(response => {
-        if (!response.headers.get('Content-Type').includes('application/json'))
-          throw new Error('Error connecting to the server. Please try again!');
-
-        return response.json().then(json => {
-          if (!response.ok) throw new Error(json.message);
-
-          const data = normalize(json, postSchema);
-          dispatch(saveSucceeded(postId));
-          dispatch(addEntities(data.entities));
-        });
-      })
-      .catch(error => dispatch(saveFailed(postId, error.message)));
+    return request(url, options).then(
+      response => {
+        const data = normalize(response.json, postSchema);
+        dispatch(saveSucceeded(postId));
+        dispatch(addEntities(data.entities));
+      },
+      error => dispatch(saveFailed(postId, error.message))
+    );
   };
 };
 

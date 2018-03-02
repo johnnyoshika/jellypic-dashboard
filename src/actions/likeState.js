@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr';
+import request from '../utils/request';
 import { post as postSchema } from '../store/schema';
 import { addEntities } from './entities';
 import { LIKE_STATE } from './actionTypes';
@@ -41,23 +42,17 @@ const save = (postId, method) => {
   return (dispatch, getState) => {
     dispatch(changeState(postId, 'saving'));
 
-    return fetch(`/api/posts/${postId}/likes`, {
+    return request(`/api/posts/${postId}/likes`, {
       method: method,
       credentials: 'include'
-    })
-      .then(response => {
-        if (!response.headers.get('Content-Type').includes('application/json'))
-          throw new Error('Error connecting to the server. Please try again!');
-
-        return response.json().then(json => {
-          if (!response.ok) throw new Error(json.message);
-
-          const data = normalize(json, postSchema);
-          dispatch(saveSucceeded(postId));
-          dispatch(addEntities(data.entities));
-        });
-      })
-      .catch(error => dispatch(saveFailed(postId, error.message)));
+    }).then(
+      response => {
+        const data = normalize(response.json, postSchema);
+        dispatch(saveSucceeded(postId));
+        dispatch(addEntities(data.entities));
+      },
+      error => dispatch(saveFailed(postId, error.message))
+    );
   };
 };
 

@@ -1,3 +1,4 @@
+import request from '../utils/request';
 import { SUBSCRIBER_STATE } from './actionTypes';
 
 const changeState = state => {
@@ -58,8 +59,7 @@ const subscribe = (dispatch, registration) => {
         credentials: 'include',
         body: JSON.stringify(s)
       })
-    )
-    .catch(error => dispatch(saveFailed(error.message)));
+    );
 };
 
 const unsubscribe = (dispatch, subscription) => {
@@ -76,29 +76,15 @@ const unsubscribe = (dispatch, subscription) => {
           credentials: 'include'
         }
       )
-    )
-    .catch(error => dispatch(saveFailed(error)));
+    );
 };
 
-const save = (dispatch, url, request) => {
+const save = (dispatch, url, options) => {
   dispatch(changeState('saving'));
-  return fetch(url, request)
-    .then(response => {
-      if (!response.headers.get('Content-Type')) {
-        dispatch(saveSucceeded());
-        return;
-      }
-
-      if (!response.headers.get('Content-Type').includes('application/json'))
-        throw new Error('Error connecting to the server. Please try again!');
-
-      return response.json().then(json => {
-        if (!response.ok) throw new Error(json.message);
-
-        dispatch(saveSucceeded());
-      });
-    })
-    .catch(error => dispatch(saveFailed(error.message)));
+  return request(url, options).then(
+    response => dispatch(saveSucceeded()),
+    error => dispatch(saveFailed(error.message))
+  );
 };
 
 // source: https://github.com/GoogleChromeLabs/web-push-codelab/blob/master/app/scripts/main.js

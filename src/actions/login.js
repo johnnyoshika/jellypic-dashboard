@@ -1,3 +1,4 @@
+import request from '../utils/request';
 import { ROUTE_LOGIN_STATE } from './actionTypes';
 
 const changeState = state => {
@@ -102,7 +103,7 @@ const login = accessToken => {
   return (dispatch, getState) => {
     dispatch(changeState('processing'));
 
-    return fetch('/api/sessions', {
+    return request('/api/sessions', {
       method: 'POST',
       credentials: 'include',
       headers: new Headers({
@@ -111,21 +112,10 @@ const login = accessToken => {
       body: JSON.stringify({
         accessToken: accessToken
       })
-    })
-      .then(response => {
-        if (response.ok) {
-          dispatch(loginSucceeded());
-          return;
-        }
-
-        if (!response.headers.get('Content-Type').includes('application/json'))
-          throw new Error('Error connecting to the server. Please try again!');
-
-        return response.json().then(json => {
-          throw new Error(json.message || 'Error logging in.');
-        });
-      })
-      .catch(error => dispatch(loginFailed(error.message)));
+    }).then(
+      response => dispatch(loginSucceeded()),
+      error => dispatch(loginFailed(error.message))
+    );
   };
 };
 
