@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CardComment from '../CardComment'
+import Comment from './Comment'
 import Moment from 'react-moment';
 import { Image } from 'cloudinary-react';
 import { toastr } from 'react-redux-toastr';
@@ -127,7 +127,7 @@ class Card extends Component {
           </div>
           <div className="card-info-comments">
             {this.props.post.comments.map(comment => (
-              <CardComment
+              <Comment
                 key={comment.id}
                 postId={this.props.post.id}
                 comment={comment}

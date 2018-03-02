@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteComment } from '../../actions/commentState';
+import { deleteComment } from '../../../actions/commentState';
 import View from './View';
 
 const mapDispatchToProps = {
