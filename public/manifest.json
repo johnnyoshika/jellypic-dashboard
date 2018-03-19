@@ -3,102 +3,102 @@
   "name": "Jellypic Photo Sharing",
   "icons": [
     {
-      "src": "/images/android-chrome-192x192.png",
+      "src": "/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/android-chrome-512x512.png",
+      "src": "/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/images/786b9e77-2122-8b32-72ab-c3797189bb67.webPlatform.png",
+      "src": "/icons/786b9e77-2122-8b32-72ab-c3797189bb67.webPlatform.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/images/0b49a9fc-6bf3-de2f-e43b-d805b3032c4e.webPlatform.png",
+      "src": "/icons/0b49a9fc-6bf3-de2f-e43b-d805b3032c4e.webPlatform.png",
       "sizes": "1240x600",
       "type": "image/png"
     },
     {
-      "src": "/images/cb854f2c-9fba-ebe2-4f72-2ba2e5b19f2d.webPlatform.png",
+      "src": "/icons/cb854f2c-9fba-ebe2-4f72-2ba2e5b19f2d.webPlatform.png",
       "sizes": "300x300",
       "type": "image/png"
     },
     {
-      "src": "/images/bd39211a-eb13-6600-e6e8-3ae8f0894494.webPlatform.png",
+      "src": "/icons/bd39211a-eb13-6600-e6e8-3ae8f0894494.webPlatform.png",
       "sizes": "150x150",
       "type": "image/png"
     },
     {
-      "src": "/images/8046d377-cad0-d884-6d59-aea91d7babee.webPlatform.png",
+      "src": "/icons/8046d377-cad0-d884-6d59-aea91d7babee.webPlatform.png",
       "sizes": "88x88",
       "type": "image/png"
     },
     {
-      "src": "/images/fa9e8609-6cce-2709-e5f7-9212cab0a145.webPlatform.png",
+      "src": "/icons/fa9e8609-6cce-2709-e5f7-9212cab0a145.webPlatform.png",
       "sizes": "24x24",
       "type": "image/png"
     },
     {
-      "src": "/images/7d05d433-ee96-ddbc-fa00-35649b50fe8c.webPlatform.png",
+      "src": "/icons/7d05d433-ee96-ddbc-fa00-35649b50fe8c.webPlatform.png",
       "sizes": "50x50",
       "type": "image/png"
     },
     {
-      "src": "/images/af5d3d8f-f30d-a2aa-e022-cf10b7c66d6d.webPlatform.png",
+      "src": "/icons/af5d3d8f-f30d-a2aa-e022-cf10b7c66d6d.webPlatform.png",
       "sizes": "620x300",
       "type": "image/png"
     },
     {
-      "src": "/images/f014a41d-b08e-231e-78d1-10b345d12a24.webPlatform.png",
+      "src": "/icons/f014a41d-b08e-231e-78d1-10b345d12a24.webPlatform.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/838db4d1-d709-bb56-98e1-37d95ef0ede9.webPlatform.png",
+      "src": "/icons/838db4d1-d709-bb56-98e1-37d95ef0ede9.webPlatform.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/images/9ecdd4f5-40f9-003a-7637-e541976d5ee2.webPlatform.png",
+      "src": "/icons/9ecdd4f5-40f9-003a-7637-e541976d5ee2.webPlatform.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/images/eb2d93a7-4eca-3ea8-eb02-9855425fe8ec.webPlatform.png",
+      "src": "/icons/eb2d93a7-4eca-3ea8-eb02-9855425fe8ec.webPlatform.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/images/2dc76c85-b565-5397-9809-beb98c50d820.webPlatform.png",
+      "src": "/icons/2dc76c85-b565-5397-9809-beb98c50d820.webPlatform.png",
       "sizes": "36x36",
       "type": "image/png"
     },
     {
-      "src": "/images/76b7927c-2910-977d-5802-532ccd3b477b.webPlatform.png",
+      "src": "/icons/76b7927c-2910-977d-5802-532ccd3b477b.webPlatform.png",
       "sizes": "1024x1024",
       "type": "image/png"
     },
     {
-      "src": "/images/0322f7cb-4248-8736-5501-a8135d143de5.webPlatform.png",
+      "src": "/icons/0322f7cb-4248-8736-5501-a8135d143de5.webPlatform.png",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "/images/ee265d9d-8676-8583-251f-c71c5d6fb8c3.webPlatform.png",
+      "src": "/icons/ee265d9d-8676-8583-251f-c71c5d6fb8c3.webPlatform.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "/images/906b9ed5-50dd-e12b-b193-f1e70e78611c.webPlatform.png",
+      "src": "/icons/906b9ed5-50dd-e12b-b193-f1e70e78611c.webPlatform.png",
       "sizes": "120x120",
       "type": "image/png"
     },
     {
-      "src": "/images/b3c904c9-41a8-368d-5f29-113e91478807.webPlatform.png",
+      "src": "/icons/b3c904c9-41a8-368d-5f29-113e91478807.webPlatform.png",
       "sizes": "76x76",
       "type": "image/png"
     }
