@@ -101,6 +101,46 @@
       "src": "/icons/b3c904c9-41a8-368d-5f29-113e91478807.webPlatform.png",
       "sizes": "76x76",
       "type": "image/png"
+    },
+    {
+      "src": "ios/ios-launchimage-750-1334.png",
+      "sizes": "750x1334"
+    },
+    {
+      "src": "ios/ios-launchimage-1334-750.png",
+      "sizes": "1334x750"
+    },
+    {
+      "src": "ios/ios-launchimage-1242-2208.png",
+      "sizes": "1242x2208"
+    },
+    {
+      "src": "ios/ios-launchimage-2208-1242.png",
+      "sizes": "2208x1242"
+    },
+    {
+      "src": "ios/ios-launchimage-640-960.png",
+      "sizes": "640x960"
+    },
+    {
+      "src": "ios/ios-launchimage-640-1136.png",
+      "sizes": "640x1136"
+    },
+    {
+      "src": "ios/ios-launchimage-1536-2048.png",
+      "sizes": "1536x2048"
+    },
+    {
+      "src": "ios/ios-launchimage-2048-1536.png",
+      "sizes": "2048x1536"
+    },
+    {
+      "src": "ios/ios-launchimage-768-1024.png",
+      "sizes": "768x1024"
+    },
+    {
+      "src": "ios/ios-launchimage-1024-768.png",
+      "sizes": "1024x768"
     }
   ],
   "start_url": "/",
