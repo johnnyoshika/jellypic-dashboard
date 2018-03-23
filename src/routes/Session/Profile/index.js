@@ -11,6 +11,7 @@ export default () => (
             className="image-100"
             alt=""
             src="https://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_152,r_max,w_152/v1427815401/bd0ar4wsjxmqtqvqcycf.png"
+            crossOrigin="anonymous"
           />
         </div>
         <div className="profile-info">
@@ -37,6 +38,7 @@ export default () => (
             className="image-100"
             alt=""
             src="https://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
+            crossOrigin="anonymous"
           />
         </div>
         <div className="profile-photo">
@@ -44,6 +46,7 @@ export default () => (
             className="image-100"
             alt=""
             src="https://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
+            crossOrigin="anonymous"
           />
         </div>
         <div className="profile-photo">
@@ -51,6 +54,7 @@ export default () => (
             className="image-100"
             alt=""
             src="https://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
+            crossOrigin="anonymous"
           />
         </div>
         <div className="profile-photo">
@@ -58,6 +62,7 @@ export default () => (
             className="image-100"
             alt=""
             src="https://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
+            crossOrigin="anonymous"
           />
         </div>
         <div className="profile-photo">
@@ -65,6 +70,7 @@ export default () => (
             className="image-100"
             alt=""
             src="https://res.cloudinary.com/dfk3jxiqp/image/upload/c_fill,g_auto:faces,h_293,w_293/v1433342408/zacrepwlrqac6x5tozu9.jpg"
+            crossOrigin="anonymous"
           />
         </div>
       </div>

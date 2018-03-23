@@ -96,7 +96,7 @@ class Card extends Component {
         <div className="card-heading">
           <div className="card-heading-user">
             <div className="card-heading-user-image">
-              <img src={this.props.post.user.thumbUrl} alt={this.props.post.user.username} />
+              <img src={this.props.post.user.thumbUrl} alt={this.props.post.user.username} crossOrigin="anonymous" />
             </div>
             <div className="card-heading-user-name">
               <Link to="/profile">{this.props.post.user.username}</Link>
@@ -113,6 +113,7 @@ class Card extends Component {
         <div className="card-photo">
           <Image
             className="image-100"
+            crossOrigin="anonymous"
             cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}
             publicId={this.props.post.cloudinaryPublicId}
             crop="fit"
