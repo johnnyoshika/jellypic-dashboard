@@ -70,15 +70,8 @@ workbox.routing.registerRoute(
   })
 );
 
-// this can only be used if index.html is pre-cached,
-// otherwise `an object that was not a Response was passed to respondWith()` error will be shown in Console and page won't load
-
-// commenting the following route out b/c we get a syntax error: Uncaught SyntaxError: Unexpected token
-
-// workbox.routing.registerRoute(
-//   ({ url, e }) => url.pathname === '/profile' || '/subscription',
-//   ({ url, e }) => self.caches.match('index.html')
-// );
+// make sure 'index.html' is pre-cached, otherwise we'll see a 'an object that was not a Response was passed to respondWith()' error in Console and page won't load.
+workbox.routing.registerNavigationRoute('/index.html');;
 
 self.addEventListener('push', e => {
   var payload = e.data.json();
