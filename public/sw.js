@@ -8,7 +8,7 @@ workbox.precaching.precacheAndRoute([]);
 workbox.routing.registerRoute(
   new RegExp('/api/(.*)'),
   workbox.strategies.networkFirst({
-    networkTimetoutSeconds: 3,
+    networkTimetoutSeconds: 5, // sadly this doesn't seem to work
     cacheName: 'api',
     plugins: [
       new workbox.expiration.Plugin({
