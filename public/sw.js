@@ -2,6 +2,17 @@ importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js'
 );
 
+self.addEventListener('install', e => {
+  // skipWaiting causes all clients to immediately activate new service worker.
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', e => {
+  // Claim clients that aren't already under its control.
+  // Useful for new sw installation, as the page that registered the service worker for the first time won't be controlled until it's loaded again.
+  self.clients.claim();
+});
+
 // Workbox will populate this list (as defined in workbox-config.js) during build.
 workbox.precaching.precacheAndRoute([]);
 
