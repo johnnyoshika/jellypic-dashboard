@@ -2,6 +2,8 @@ import { schema } from 'normalizr';
 
 export const user = new schema.Entity('users');
 
+export const profile = new schema.Entity('profiles');
+
 export const like = new schema.Entity('likes', {
   user: user
 });
