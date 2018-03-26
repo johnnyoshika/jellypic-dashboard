@@ -110,7 +110,7 @@ workbox.routing.registerRoute(
 );
 
 // make sure 'index.html' is pre-cached, otherwise we'll see a 'an object that was not a Response was passed to respondWith()' error in Console and page won't load.
-workbox.routing.registerNavigationRoute('/index.html');;
+workbox.routing.registerNavigationRoute('/index.html');
 
 self.addEventListener('push', e => {
   var payload = e.data.json();
