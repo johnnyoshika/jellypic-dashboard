@@ -1,8 +1,8 @@
 import { normalize } from 'normalizr';
-import request from '../utils/request';
-import { post as postSchema } from '../store/schema';
-import { addEntities } from './entities';
-import { ROUTE_POST_STATE } from './actionTypes';
+import request from '../../utils/request';
+import { post as postSchema } from '../../store/schema';
+import { addEntities } from '../entities';
+import { ROUTE_POST_STATE } from '../actionTypes';
 
 const changeState = state => {
   return {

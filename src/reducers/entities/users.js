@@ -1,14 +1,14 @@
-import { ENTITIES_ADD } from '../actions/actionTypes';
+import { ENTITIES_ADD } from '../../actions/actionTypes';
 
 const ACTION_HANDLERS = {
   [ENTITIES_ADD]: (state, action) => ({
     ...state,
-    ...action.payload.comments
+    ...action.payload.users
   })
 };
 
 const initialState = {};
-export default function commentsReducer(state = initialState, action) {
+export default function usersReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
 
   return handler ? handler(state, action) : state;

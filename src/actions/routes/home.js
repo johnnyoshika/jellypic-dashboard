@@ -1,6 +1,6 @@
-import { appendPosts, replacePosts } from './entities';
-import request from '../utils/request';
-import { ROUTE_HOME_STATE } from './actionTypes';
+import { appendPosts, replacePosts } from '../entities';
+import request from '../../utils/request';
+import { ROUTE_HOME_STATE } from '../actionTypes';
 
 const changeState = state => {
   return {

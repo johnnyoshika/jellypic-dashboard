@@ -1,5 +1,5 @@
-import request from '../utils/request';
-import { ROUTE_LOGIN_STATE } from './actionTypes';
+import request from '../../utils/request';
+import { ROUTE_LOGIN_STATE } from '../actionTypes';
 
 const changeState = state => {
   return {

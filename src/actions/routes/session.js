@@ -1,8 +1,8 @@
 import { normalize } from 'normalizr';
-import request from '../utils/request';
-import { user as userSchema } from '../store/schema';
-import { addEntities } from './entities';
-import { ROUTE_SESSION_STATE } from './actionTypes';
+import request from '../../utils/request';
+import { user as userSchema } from '../../store/schema';
+import { addEntities } from '../entities';
+import { ROUTE_SESSION_STATE } from '../actionTypes';
 
 const changeState = state => {
   return {

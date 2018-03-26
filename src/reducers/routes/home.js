@@ -3,7 +3,7 @@ import {
   POSTS_PREPEND,
   POSTS_APPEND,
   POSTS_REPLACE
-} from '../actions/actionTypes';
+} from '../../actions/actionTypes';
 
 const ACTION_HANDLERS = {
   [ROUTE_HOME_STATE]: (state, action) => ({ ...state, ...action.payload }),

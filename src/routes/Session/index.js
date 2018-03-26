@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { authenticate } from '../../actions/session';
+import { authenticate } from '../../actions/routes/session';
 import View from './View';
 
 const mapDispatchToProps = {

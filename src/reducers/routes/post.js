@@ -1,4 +1,4 @@
-import { ROUTE_POST_STATE } from '../actions/actionTypes';
+import { ROUTE_POST_STATE } from '../../actions/actionTypes';
 
 const ACTION_HANDLERS = {
   [ROUTE_POST_STATE]: (state, action) => ({ ...state, ...action.payload })

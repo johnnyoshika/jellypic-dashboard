@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { checkFacebook, loginWithFacebook } from '../../actions/login';
+import { checkFacebook, loginWithFacebook } from '../../actions/routes/login';
 import View from './View';
 
 const mapDispatchToProps = {

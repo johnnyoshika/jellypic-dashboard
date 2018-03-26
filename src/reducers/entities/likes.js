@@ -1,4 +1,4 @@
-import { ENTITIES_ADD } from '../actions/actionTypes';
+import { ENTITIES_ADD } from '../../actions/actionTypes';
 
 const ACTION_HANDLERS = {
   [ENTITIES_ADD]: (state, action) => ({

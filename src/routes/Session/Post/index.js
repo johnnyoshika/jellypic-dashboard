@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchPost } from '../../../actions/post';
+import { fetchPost } from '../../../actions/routes/post';
 import View from './View';
 
 const mapDispatchToProps = {
