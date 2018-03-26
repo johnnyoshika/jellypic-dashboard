@@ -4,10 +4,11 @@ import { post as postSchema } from '../../store/schema';
 import { addEntities } from '../entities';
 import { ROUTE_POST_STATE } from '../actionTypes';
 
-const changeState = state => {
+const changeState = (id, state) => {
   return {
     type: ROUTE_POST_STATE,
     payload: {
+      id,
       state,
       error: null
     }
@@ -26,7 +27,7 @@ const fetchFailed = message => {
 
 const fetchPost = id => {
   return (dispatch, getState) => {
-    dispatch(changeState('loading'));
+    dispatch(changeState(id, 'loading'));
 
     return request(`/api/posts/${id}`, {
       credentials: 'include'
@@ -34,7 +35,7 @@ const fetchPost = id => {
       response => {
         const data = normalize(response.json, postSchema);
         dispatch(addEntities(data.entities));
-        dispatch(changeState('success'));
+        dispatch(changeState(id, 'success'));
       },
       error => dispatch(fetchFailed(error.message))
     );

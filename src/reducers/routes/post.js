@@ -5,6 +5,7 @@ const ACTION_HANDLERS = {
 };
 
 const initialState = {
+  id: null,
   state: 'idle', // loading,idle,error,success
   error: null
 };

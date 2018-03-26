@@ -7,7 +7,7 @@ import './Styles.css';
 
 class PostView extends Component {
   componentDidMount() {
-    this.props.fetchPost(this.props.match.params.id);
+    this.props.fetchPost(parseInt(this.props.match.params.id, 10));
   }
 
   renderError() {
@@ -30,7 +30,7 @@ class PostView extends Component {
     return (
       <Card
         key={this.props.match.params.id}
-        post={selectPost(this.props.entities, this.props.match.params.id)}
+        post={selectPost(this.props.entities, this.props.post.id)}
       />
     );
   }
