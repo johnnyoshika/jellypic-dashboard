@@ -5,7 +5,7 @@ import Uploader from '../../components/Uploader';
 import Home from './Home';
 import Post from './Post';
 import Subscription from './Subscription';
-import Profile from './Profile';
+import User from './User';
 import './Styles.css';
 
 class View extends Component {
@@ -90,7 +90,7 @@ class View extends Component {
                 </NavLink>
               </div>
               <div>
-                <NavLink to="/profile" activeClassName="nav-active">
+                <NavLink to={'/users/' + this.props.session.user} activeClassName="nav-active">
                   <i className="fa fa-user fa-2x" aria-hidden="true" />
                 </NavLink>
               </div>
@@ -103,7 +103,7 @@ class View extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/posts/:id" component={Post} />
           <Route path="/subscription" component={Subscription} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/users/:id" component={User} />
         </div>
       </div>
     );
