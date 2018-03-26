@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Comment from './Comment'
+import Comment from './Comment';
 import Moment from 'react-moment';
 import { Image } from 'cloudinary-react';
 import { toastr } from 'react-redux-toastr';
@@ -96,10 +96,16 @@ class Card extends Component {
         <div className="card-heading">
           <div className="card-heading-user">
             <div className="card-heading-user-image">
-              <img src={this.props.post.user.thumbUrl} alt={this.props.post.user.username} crossOrigin="anonymous" />
+              <img
+                src={this.props.post.user.thumbUrl}
+                alt={this.props.post.user.username}
+                crossOrigin="anonymous"
+              />
             </div>
             <div className="card-heading-user-name">
-              <Link to="/profile">{this.props.post.user.username}</Link>
+              <Link to={'/users/' + this.props.post.user.id}>
+                {this.props.post.user.username}
+              </Link>
             </div>
           </div>
           <div className="card-heading-time text-right">
