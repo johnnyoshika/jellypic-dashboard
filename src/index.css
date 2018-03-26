@@ -435,6 +435,10 @@ fieldset[disabled] .btn-link:focus {
   height: 100%;
 }
 
+.vertical-center {
+  display: grid;
+  align-items: center;
+}
 .text-center {
   text-align: center;
 }
@@ -449,6 +453,9 @@ fieldset[disabled] .btn-link:focus {
 }
 .mt-80 {
   margin-top: 80px;
+}
+.mt-40 {
+  margin-top: 40px;
 }
 .mb-40 {
   margin-bottom: 40px;
