@@ -13,6 +13,10 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
+workbox.core.setCacheNameDetails({
+  suffix: 'v2'
+});
+
 // Workbox will populate this list (as defined in workbox-config.js) during build.
 workbox.precaching.precacheAndRoute([]);
 
