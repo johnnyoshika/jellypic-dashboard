@@ -80,7 +80,7 @@ class View extends Component {
                 </NavLink>
               </div>
               <div>
-                <Uploader>
+                <Uploader history={this.props.history}>
                   <i className="fa fa-cloud-upload fa-2x" aria-hidden="true" />
                 </Uploader>
               </div>

@@ -33,6 +33,7 @@ class View extends Component {
       (error, result) => {
         if (!error) {
           this.props.savePost(result.map(image => image.public_id));
+          this.props.history.push('/');
           return;
         }
 
