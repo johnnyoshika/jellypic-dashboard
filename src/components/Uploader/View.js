@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toastr } from 'react-redux-toastr';
+import loadScript from '../../utils/loadScript';
 
 class View extends Component {
   constructor() {
@@ -11,6 +12,15 @@ class View extends Component {
   }
 
   uploadWidget() {
+    loadScript('//widget.cloudinary.com/global/all.js').then(
+      () => this.showUploader(),
+      () => {
+        toastr.error(`Can't connect to network. Please try again!`);
+      }
+    );
+  }
+
+  showUploader() {
     window.cloudinary.openUploadWidget(
       {
         cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
