@@ -68,13 +68,15 @@ const subscribe = () => {
             process.env.REACT_APP_WEB_PUSH_VAPID_PUBLIC_KEY
           )
         })
-        .then(s =>
-          save(dispatch, getState, '/api/subscriptions', {
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(s)
-          })
+        .then(
+          s =>
+            save(dispatch, getState, '/api/subscriptions', {
+              headers: { 'Content-Type': 'application/json' },
+              method: 'POST',
+              credentials: 'include',
+              body: JSON.stringify(s)
+            }),
+          error => dispatch(setError(error.message))
         );
     });
   };
