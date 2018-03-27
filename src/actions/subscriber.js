@@ -29,7 +29,16 @@ const check = () => {
     }
 
     if (!navigator.serviceWorker.controller) {
-      dispatch(setError(`Service worker is not controlling this app.`));
+      dispatch(setError('Service worker is not controlling this app.'));
+      return;
+    }
+
+    if (Notification.permission === 'denied') {
+      dispatch(
+        setError(
+          'Oh oh! You blocked notifications. Please change your browser settings to enable it.'
+        )
+      );
       return;
     }
 
