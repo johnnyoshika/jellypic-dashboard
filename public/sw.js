@@ -118,11 +118,20 @@ self.addEventListener('push', e => {
     self.registration.showNotification(payload.title, {
       body: payload.message,
       icon: payload.icon,
-      // badge: '',
+      image: payload.image,
+      badge: '/icons/android-chrome-192x192.png',
       data: payload,
       actions: [
-        { action: 'view', title: 'View Post' /*, icon: ''*/ },
-        { action: 'app', title: 'Open App' /*, icon: ''*/ }
+        {
+          action: 'view',
+          title: 'View Post',
+          icon: '/icons/picture-128x128.png'
+        },
+        {
+          action: 'app',
+          title: 'Open App',
+          icon: '/icons/android-chrome-192x192.png'
+        }
       ]
     })
   );
