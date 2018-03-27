@@ -5,7 +5,7 @@ const ACTION_HANDLERS = {
 };
 
 const initialState = {
-  state: 'idle', // idle,saving,error
+  state: 'idle', // idle,unavailable,available,subscribed,saving,error
   error: null
 };
 export default function subscriberReducer(state = initialState, action) {

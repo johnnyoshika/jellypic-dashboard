@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
-import { toggle } from '../../../actions/subscriber'
+import { check, subscribe, unsubscribe } from '../../../actions/subscriber'
 import View from './View'
 
 const mapDispatchToProps = {
-  toggle
+  check,
+  subscribe,
+  unsubscribe
 }
 
 const mapStateToProps = (state) => ({

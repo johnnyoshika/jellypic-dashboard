@@ -11,7 +11,7 @@ const changeState = state => {
   };
 };
 
-const saveFailed = message => {
+const setError = message => {
   return {
     type: SUBSCRIBER_STATE,
     payload: {
@@ -21,69 +21,83 @@ const saveFailed = message => {
   };
 };
 
-const saveSucceeded = () => {
-  return {
-    type: SUBSCRIBER_STATE,
-    payload: {
-      state: 'idle',
-      error: null
+const check = () => {
+  return (dispatch, getState) => {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+      dispatch(changeState('unavailable'));
+      return;
     }
+
+    if (!navigator.serviceWorker.controller) {
+      dispatch(setError(`Service worker is not controlling this app.`));
+      return;
+    }
+
+    navigator.serviceWorker.ready
+      .then(registration => registration.pushManager.getSubscription())
+      .then(subscription => {
+        if (subscription) dispatch(changeState('subscribed'));
+        else dispatch(changeState('available'));
+      })
+      .catch(error =>
+        dispatch(
+          setError(
+            `Couldn't detect whether push notification is available on this device.`
+          )
+        )
+      );
   };
 };
 
-const toggle = () => {
+const subscribe = () => {
   return (dispatch, getState) => {
-    if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
-
     navigator.serviceWorker.ready.then(registration => {
-      registration.pushManager.getSubscription().then(s => {
-        if (s === null) subscribe(dispatch, registration);
-        else unsubscribe(dispatch, s);
+      registration.pushManager
+        .subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlB64ToUint8Array(
+            process.env.REACT_APP_WEB_PUSH_VAPID_PUBLIC_KEY
+          )
+        })
+        .then(s =>
+          save(dispatch, getState, '/api/subscriptions', {
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(s)
+          })
+        );
+    });
+  };
+};
+
+const unsubscribe = () => {
+  return (dispatch, getState) => {
+    navigator.serviceWorker.ready.then(registration => {
+      registration.pushManager.getSubscription().then(subscription => {
+        subscription.unsubscribe().then(() => {
+          save(
+            dispatch,
+            getState,
+            `/api/subscriptions?endpoint=${encodeURIComponent(
+              subscription.endpoint
+            )}`,
+            {
+              method: 'DELETE',
+              credentials: 'include'
+            }
+          );
+        });
       });
     });
   };
 };
 
-const subscribe = (dispatch, registration) => {
-  registration.pushManager
-    .subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlB64ToUint8Array(
-        process.env.REACT_APP_WEB_PUSH_VAPID_PUBLIC_KEY
-      )
-    })
-    .then(s =>
-      save(dispatch, '/api/subscriptions', {
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify(s)
-      })
-    );
-};
-
-const unsubscribe = (dispatch, subscription) => {
-  subscription
-    .unsubscribe()
-    .then(() =>
-      save(
-        dispatch,
-        `/api/subscriptions?endpoint=${encodeURIComponent(
-          subscription.endpoint
-        )}`,
-        {
-          method: 'DELETE',
-          credentials: 'include'
-        }
-      )
-    );
-};
-
-const save = (dispatch, url, options) => {
+const save = (dispatch, getState, url, options) => {
   dispatch(changeState('saving'));
   return request(url, options).then(
-    response => dispatch(saveSucceeded()),
-    error => dispatch(saveFailed(error.message))
+    response => check()(dispatch, getState),
+    error => dispatch(setError(error.message))
   );
 };
 
@@ -105,4 +119,4 @@ const urlB64ToUint8Array = base64String => {
 };
 /*eslint-enable */
 
-export { toggle };
+export { check, subscribe, unsubscribe };
