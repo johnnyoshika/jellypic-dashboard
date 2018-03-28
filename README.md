@@ -21,3 +21,42 @@ Project was bootstrapped with [Create React App](https://github.com/facebookincu
 * In the `Remote devices` tab of Chrome Dev Tools, add this port forwarding rule:
   * `3000` --> `localhost:3000`
 * Now our Samsung S7 device can run our app with url `http://localhost:3000`
+
+## Deployment
+Use Linux, Windows Subsystem for Linux (WSL), or Mac
+### Preparation:
+* Make sure `lftp` is installed
+  * Linux or WSL:
+    * $ `sudo apt-get install lftp`
+  * Mac:
+    * $ `brew install lftp`
+* Create `deploy.sh`
+  * $ `touch deploy.sh`
+  * May need to allow execute permission
+    * Check:
+      * $ `ls -al deploy.sh`
+    * If change is necessary:
+      * $ `chmod u+x deploy.sh`
+* Set content of `deploy.sh` to:
+
+```
+#!/bin/bash
+
+FTP_USER={user}         # example: jellypic\\johnny_ftp (note the escaped backslash)
+FTP_PASSWORD={password}
+FTP_HOST={host:port}    # example: www.example.com:21
+FTP_DIR=/               # another example: /site/wwwroot/wwwroot
+
+# Deploy assets first
+lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST; set ssl:verify-certificate no; mirror --exclude index.html --exclude sw.js -R build/ $FTP_DIR"
+
+# Deploy index.html
+lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST; set ssl:verify-certificate no; put -O $FTP_DIR build/index.html"
+
+# Deploy sw.js
+lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST; set ssl:verify-certificate no; put -O $FTP_DIR build/sw.js"
+```
+* Make sure line endings are unix based (LF).
+
+### Deploy:
+* `bash deploy.sh`
