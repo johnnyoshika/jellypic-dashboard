@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Refresher from '../../components/Refresher';
 import ErrorMessage from '../../components/ErrorMessage';
 import './Styles.css';
@@ -21,7 +21,7 @@ class View extends Component {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <Refresher />
         <div className="login-container">
           <div className="gutter" />
@@ -42,7 +42,7 @@ class View extends Component {
           </div>
           <div className="gutter" />
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
