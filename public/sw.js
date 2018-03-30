@@ -2,6 +2,8 @@ importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js'
 );
 
+var version = 'v2';
+
 self.addEventListener('activate', e => {
   // Claim clients that aren't already under its control.
   // Useful for new sw installation, as the page that registered the service worker for the first time won't be controlled until it's loaded again.
@@ -21,7 +23,7 @@ self.addEventListener('message', e => {
 });
 
 workbox.core.setCacheNameDetails({
-  suffix: 'v2'
+  suffix: version
 });
 
 // Workbox will populate this list (as defined in workbox-config.js) during build.
@@ -59,7 +61,7 @@ workbox.routing.registerRoute(
   new RegExp('/api/(.*)'),
   workbox.strategies.networkFirst({
     networkTimetoutSeconds: 5, // sadly this doesn't seem to work
-    cacheName: 'api',
+    cacheName: 'api-' + version,
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 100
@@ -72,7 +74,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
   workbox.strategies.cacheFirst({
-    cacheName: 'googlefonts',
+    cacheName: 'googlefonts-' + version,
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 5
@@ -85,7 +87,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp('https://maxcdn.bootstrapcdn.com/font-awesome/(.*)'),
   workbox.strategies.cacheFirst({
-    cacheName: 'fontawesome',
+    cacheName: 'fontawesome-' + version,
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 20
@@ -98,7 +100,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp('https://res.cloudinary.com/(.*)'),
   workbox.strategies.cacheFirst({
-    cacheName: 'cloudinary',
+    cacheName: 'cloudinary-' + version,
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 200
@@ -111,7 +113,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   /\.(?:js|css)$/,
   workbox.strategies.cacheFirst({
-    cacheName: 'static-resources',
+    cacheName: 'static-resources-' + version,
     plugins: [
       new workbox.expiration.Plugin({
         maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
