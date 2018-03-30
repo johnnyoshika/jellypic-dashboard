@@ -5,6 +5,6 @@ module.exports = {
     "**/*.{html,css,icon,png,jpg}",
     "**/manifest.json"
   ],
-  "swDest": "build\\sw.js",
-  "swSrc": "public\\sw.js"
+  "swDest": "build/sw.js",
+  "swSrc": "public/sw.js"
 };
