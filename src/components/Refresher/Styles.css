@@ -1,0 +1,13 @@
+.refresher-container {
+  text-align: center;
+  padding: 10px;
+  background-color: #022c51;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.refresher-container span {
+  display: inline-block;
+  margin: 0 5px;
+}

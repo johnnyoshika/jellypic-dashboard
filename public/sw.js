@@ -8,6 +8,18 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
+self.addEventListener('message', e => {
+  if (!e.data) return;
+
+  switch (e.data) {
+    case 'skipWaiting':
+      self.skipWaiting();
+      break;
+    default:
+      break;
+  }
+});
+
 workbox.core.setCacheNameDetails({
   suffix: 'v2'
 });
