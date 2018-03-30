@@ -42,6 +42,8 @@ Use Linux, Windows Subsystem for Linux (WSL), or Mac
 ```
 #!/bin/bash
 
+npm run build
+
 FTP_USER={user}         # example: jellypic\\johnny_ftp (note the escaped backslash)
 FTP_PASSWORD={password}
 FTP_HOST={host:port}    # example: www.example.com:21
