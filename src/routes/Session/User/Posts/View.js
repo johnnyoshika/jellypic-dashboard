@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ErrorMessage from '../../../../components/ErrorMessage';
 import { selectPost } from '../../../../utils/selectors';
 import { Link } from 'react-router-dom';
@@ -87,7 +87,7 @@ class PostsView extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {(() => {
           switch (this.props.userPosts.state) {
             case 'refreshing':
@@ -98,7 +98,7 @@ class PostsView extends Component {
         })()}
         {this.props.userPosts.state === 'error' && this.renderError()}
         {this.props.userPosts.state === 'loading' && this.renderSpinner()}
-      </div>
+      </Fragment>
     );
   }
 }

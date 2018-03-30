@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route, Link, NavLink } from 'react-router-dom';
 import ErrorMessage from '../../components/ErrorMessage';
 import Refresher from '../../components/Refresher';
@@ -100,12 +100,12 @@ class View extends Component {
           <div className="gutter" />
         </div>
         {this.renderUploaderState()}
-        <div>
+        <Fragment>
           <Route exact path="/" component={Home} />
           <Route path="/posts/:id" component={Post} />
           <Route path="/subscription" component={Subscription} />
           <Route path="/users/:id" component={User} />
-        </div>
+        </Fragment>
       </div>
     );
   }
@@ -131,7 +131,7 @@ class View extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <Refresher />
         {(() => {
           if (this.props.session.state === 'authenticated')
@@ -141,7 +141,7 @@ class View extends Component {
           else
             return this.renderSpinner();
         })()}
-      </div>
+      </Fragment>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Session from './routes/Session';
 import Login from './routes/Login';
@@ -8,14 +8,12 @@ import './Toastr.css';
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Router>
-          <div>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/" component={Session} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/" component={Session} />
+          </Switch>
         </Router>
         <ReduxToastr
           timeOut={6000}
@@ -26,7 +24,7 @@ class App extends Component {
           transitionOut="bounceOut"
           progressBar={false}
         />
-      </div>
+      </Fragment>
     );
   }
 }
