@@ -1,11 +1,37 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { init } from '@rematch/core';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import thunk from 'redux-thunk';
+import entities from './reducers/entities/';
+import routes from './reducers/routes/';
+import likeState from './reducers/likeState';
+import commentState from './reducers/commentState';
+import refresher from './reducers/refresher';
+import uploader from './reducers/uploader';
+import subscriber from './reducers/subscriber';
+import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
 
-const store = configureStore();
+const store = init({
+  redux: {
+    reducers: {
+      entities,
+      routes,
+      likeState,
+      commentState,
+      refresher,
+      uploader,
+      subscriber,
+      toastr
+    },
+    initialState:
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__(),
+    middlewares: [thunk]
+  }
+});
 
 render(
   <Provider store={store}>
