@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { init } from '@rematch/core';
+import * as  models from './models'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import entities from './reducers/entities/';
@@ -15,6 +16,7 @@ import './index.css';
 import App from './App';
 
 const store = init({
+  models,
   redux: {
     reducers: {
       entities,

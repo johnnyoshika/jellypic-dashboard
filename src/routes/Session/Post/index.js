@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { fetchPost } from '../../../actions/routes/post';
 import View from './View';
 
 const mapStateToProps = state => ({
-  post: state.routes.post,
-  entities: state.entities
+  post: state.routePost,
+  entities: state.entities2
 });
 
-const mapDispatchToProps = {
-  fetchPost
-};
+const mapDispatchToProps = dispatch => ({
+  fetchPost: id => dispatch.routePost.fetchPost({ id })
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);
