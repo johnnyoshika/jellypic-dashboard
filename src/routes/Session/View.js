@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink } from 'react-router-dom';
 import ErrorMessage from '../../components/ErrorMessage';
-import Refresher from '../../components/Refresher';
 import Uploader from '../../components/Uploader';
 import Home from './Home';
 import Post from './Post';
@@ -130,18 +129,14 @@ class View extends Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <Refresher />
-        {(() => {
-          if (this.props.session.state === 'authenticated')
-            return this.renderPage();
-          else if (this.props.session.state === 'error')
-            return this.renderError();
-          else
-            return this.renderSpinner();
-        })()}
-      </React.Fragment>
+    return ((() => {
+        if (this.props.session.state === 'authenticated')
+          return this.renderPage();
+        else if (this.props.session.state === 'error')
+          return this.renderError();
+        else
+          return this.renderSpinner();
+      })()
     );
   }
 }
