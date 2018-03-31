@@ -23,6 +23,8 @@ const setError = message => {
 
 const check = () => {
   return (dispatch, getState) => {
+    dispatch(changeState('checking'));
+
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
       dispatch(changeState('unavailable'));
       return;
@@ -45,8 +47,19 @@ const check = () => {
     navigator.serviceWorker.ready
       .then(registration => registration.pushManager.getSubscription())
       .then(subscription => {
-        if (subscription) dispatch(changeState('subscribed'));
-        else dispatch(changeState('available'));
+        if (!subscription) return dispatch(changeState('available'));
+
+        request(
+          '/api/subscriptions?endpoint=' +
+            encodeURIComponent(subscription.endpoint),
+          {
+            credentials: 'include'
+          }
+        ).then(
+          response => dispatch(changeState('subscribed')),
+          error => dispatch(changeState('available'))
+        );
+        
       })
       .catch(error =>
         dispatch(

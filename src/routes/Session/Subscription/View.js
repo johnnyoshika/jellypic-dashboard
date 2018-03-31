@@ -43,7 +43,7 @@ class View extends Component {
     );
   }
 
-  renderSaving() {
+  renderLoading() {
     return (
       <div className="text-center">
         <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
@@ -78,8 +78,9 @@ class View extends Component {
                   return this.renderAvailable();
                 case 'unavailable':
                   return this.renderUnavailable();
+                case 'checking':
                 case 'saving':
-                  return this.renderSaving();
+                  return this.renderLoading();
                 case 'error':
                   return this.renderError();
                 default:
