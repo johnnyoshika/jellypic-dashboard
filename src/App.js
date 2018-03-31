@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Session from './routes/Session';
 import Login from './routes/Login';
 import ReduxToastr from 'react-redux-toastr';
+import Refresher from './components/Refresher';
 import './Toastr.css';
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <Refresher />
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
