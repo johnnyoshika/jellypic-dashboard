@@ -4,7 +4,7 @@ import { addComment } from '../../actions/commentState';
 import View from './View';
 
 const mapStateToProps = state => ({
-  session: state.routes.session,
+  session: state.session,
   likeState: state.likeState,
   commentState: state.commentState
 });

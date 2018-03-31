@@ -3,7 +3,7 @@ import { deleteComment } from '../../../actions/commentState';
 import View from './View';
 
 const mapStateToProps = state => ({
-  session: state.routes.session,
+  session: state.session,
   commentState: state.commentState
 });
 
