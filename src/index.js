@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import entities from './reducers/entities/';
 import routes from './reducers/routes/';
-import uploader from './reducers/uploader';
 import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
@@ -17,7 +16,6 @@ const store = init({
     reducers: {
       entities,
       routes,
-      uploader,
       toastr
     },
     middlewares: [thunk]
