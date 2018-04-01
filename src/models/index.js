@@ -1,5 +1,6 @@
 export { default as entities2 } from './entities';
 export { default as refresher } from './refresher';
+export { default as subscriber } from './subscriber';
 export { default as session } from './session';
 export { default as login } from './login';
 export { default as likeState } from './likeState';

@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import entities from './reducers/entities/';
 import routes from './reducers/routes/';
 import uploader from './reducers/uploader';
-import subscriber from './reducers/subscriber';
 import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
@@ -19,7 +18,6 @@ const store = init({
       entities,
       routes,
       uploader,
-      subscriber,
       toastr
     },
     middlewares: [thunk]
