@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import entities from './reducers/entities/';
 import routes from './reducers/routes/';
-import refresher from './reducers/refresher';
 import uploader from './reducers/uploader';
 import subscriber from './reducers/subscriber';
 import { reducer as toastr } from 'react-redux-toastr';
@@ -19,7 +18,6 @@ const store = init({
     reducers: {
       entities,
       routes,
-      refresher,
       uploader,
       subscriber,
       toastr
