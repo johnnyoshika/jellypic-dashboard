@@ -8,3 +8,5 @@ export { default as likeState } from './likeState';
 export { default as commentState } from './commentState';
 export { default as routeHome } from './routeHome';
 export { default as routePost } from './routePost';
+export { default as routeUserProfile } from './routeUserProfile';
+export { default as routeUserPosts } from './routeUserPosts';
