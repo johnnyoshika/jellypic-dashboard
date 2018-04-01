@@ -1,4 +1,4 @@
-export { default as entities2 } from './entities';
+export { default as entities } from './entities';
 export { default as refresher } from './refresher';
 export { default as subscriber } from './subscriber';
 export { default as uploader } from './uploader';

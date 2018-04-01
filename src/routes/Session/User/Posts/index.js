@@ -3,7 +3,7 @@ import View from './View';
 
 const mapStateToProps = state => ({
   userPosts: state.routeUserPosts,
-  entities: state.entities2
+  entities: state.entities
 });
 
 const mapDispatchToProps = dispatch => ({

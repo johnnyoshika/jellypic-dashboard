@@ -14,7 +14,7 @@ const fetchPosts = (rootState, url) => {
     credentials: 'include'
   }).then(response => {
     const data = normalize(response.json.data, [postSchema]);
-    dispatch.entities2.add(data.entities);
+    dispatch.entities.add(data.entities);
     dispatch.routeHome.fetchSucceeded({
       nextUrl: response.json.pagination.nextUrl
     });

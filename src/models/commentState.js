@@ -16,7 +16,7 @@ const save = (postId, url, options) => {
     response => {
       const data = normalize(response.json, postSchema);
       dispatch.commentState.saveSucceeded({ postId });
-      dispatch.entities2.add(data.entities);
+      dispatch.entities.add(data.entities);
     },
     error => dispatch.commentState.saveFailed(postId, error.message)
   );

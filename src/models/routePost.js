@@ -29,7 +29,7 @@ export default {
         });
 
         const data = normalize(response.json, postSchema);
-        dispatch.entities2.add(data.entities);
+        dispatch.entities.add(data.entities);
         this.changeState({ id, newState: 'success' });
       } catch (error) {
         this.fetchFailed({ message: error.message });

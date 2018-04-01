@@ -33,10 +33,10 @@ export default {
           })
         ]);
 
-        dispatch.entities2.add(
+        dispatch.entities.add(
           normalize(responses[0].json, userSchema).entities
         );
-        dispatch.entities2.add(
+        dispatch.entities.add(
           normalize(responses[1].json, profileSchema).entities
         );
         this.changeState({ id, newState: 'success' });

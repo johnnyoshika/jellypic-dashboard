@@ -33,7 +33,7 @@ export default {
         });
 
         const data = normalize(response.json, userSchema);
-        dispatch.entities2.add(data.entities);
+        dispatch.entities.add(data.entities);
         this.setSession({ userId: data.result });
       } catch (error) {
         if (error.status === 401) this.changeState({ newState: 'anonymous' });

@@ -19,7 +19,7 @@ const save = (postId, method) => {
     response => {
       const data = normalize(response.json, postSchema);
       dispatch.likeState.saveSucceeded({ postId });
-      dispatch.entities2.add(data.entities);
+      dispatch.entities.add(data.entities);
     },
     error => dispatch.likeState.saveFailed({ postId, message: error.message })
   );
