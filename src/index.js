@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import entities from './reducers/entities/';
 import routes from './reducers/routes/';
-import commentState from './reducers/commentState';
 import refresher from './reducers/refresher';
 import uploader from './reducers/uploader';
 import subscriber from './reducers/subscriber';
@@ -20,7 +19,6 @@ const store = init({
     reducers: {
       entities,
       routes,
-      commentState,
       refresher,
       uploader,
       subscriber,

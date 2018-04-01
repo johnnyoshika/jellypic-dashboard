@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { addComment } from '../../actions/commentState';
 import View from './View';
 
 const mapStateToProps = state => ({
@@ -11,7 +10,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   like: postId => dispatch.likeState.like({ postId }),
   unlike: postId => dispatch.likeState.unlike({ postId }),
-  addComment
+  addComment: (postId, text) =>
+    dispatch.commentState.addComment({ postId, text })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);
