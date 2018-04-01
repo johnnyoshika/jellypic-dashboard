@@ -4,7 +4,6 @@ import { init } from '@rematch/core';
 import * as  models from './models'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import entities from './reducers/entities/';
 import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
@@ -13,7 +12,6 @@ const store = init({
   models,
   redux: {
     reducers: {
-      entities,
       toastr
     },
     middlewares: [thunk]
