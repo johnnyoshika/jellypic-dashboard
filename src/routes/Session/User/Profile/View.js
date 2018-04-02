@@ -33,7 +33,7 @@ class ProfileView extends Component {
   renderProfile() {
     // use id in redux state (this.props.userProfile.id) instead of this.props.id
     // which comes from the router, as this.props.id gets immediately changed when the route
-    // changes before this.props.userProfile.state has a chance to switch from 'success' to 'loading'
+    // changes before this.props.userProfile.status has a chance to switch from 'success' to 'loading'
     const user = selectUser(this.props.entities, this.props.userProfile.id);
     const profile = selectProfile(this.props.entities, this.props.userProfile.id);
 
@@ -74,7 +74,7 @@ class ProfileView extends Component {
     return (
       <div className="vertical-center">
         {(() => {
-          switch (this.props.userProfile.state) {
+          switch (this.props.userProfile.status) {
             case 'error':
               return this.renderError();
             case 'loading':

@@ -20,14 +20,14 @@ class View extends Component {
 
   render() {
     return (() => {
-      if (this.props.refresher.state !== 'fresh')
+      if (this.props.refresher.status !== 'fresh')
         return (
           <div className="refresher-container">
             <span>This site has updated!</span>
             <span>
               <button
                 className="btn btn-primary"
-                disabled={this.props.refresher.state === 'activating'}
+                disabled={this.props.refresher.status === 'activating'}
                 onClick={this.reload}
               >
                 Reload

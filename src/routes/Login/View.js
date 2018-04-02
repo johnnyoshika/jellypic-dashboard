@@ -8,13 +8,13 @@ class View extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.login.state === 'success') this.props.history.push('/');
+    if (this.props.login.status === 'success') this.props.history.push('/');
   }
 
   disabled() {
     return (
-      this.props.login.state === 'processing' ||
-      this.props.login.state === 'success'
+      this.props.login.status === 'processing' ||
+      this.props.login.status === 'success'
     );
   }
 
@@ -32,7 +32,7 @@ class View extends Component {
             >
               Log in with Facebook
             </button>
-            {this.props.login.state === 'error' && (
+            {this.props.login.status === 'error' && (
               <ErrorMessage message={this.props.login.error} />
             )}
           </div>

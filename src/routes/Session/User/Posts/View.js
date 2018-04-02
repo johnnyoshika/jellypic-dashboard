@@ -35,7 +35,7 @@ class PostsView extends Component {
     if (window.innerHeight + window.scrollY < document.body.offsetHeight - 500)
       return;
 
-    if (this.props.userPosts.state === 'error') return;
+    if (this.props.userPosts.status === 'error') return;
 
     this.props.fetchNext(this.props.userPosts.id);
   }
@@ -89,15 +89,15 @@ class PostsView extends Component {
     return (
       <React.Fragment>
         {(() => {
-          switch (this.props.userPosts.state) {
+          switch (this.props.userPosts.status) {
             case 'refreshing':
               return this.renderSpinner();
             default:
               return this.renderPosts();
           }
         })()}
-        {this.props.userPosts.state === 'error' && this.renderError()}
-        {this.props.userPosts.state === 'loading' && this.renderSpinner()}
+        {this.props.userPosts.status === 'error' && this.renderError()}
+        {this.props.userPosts.status === 'loading' && this.renderSpinner()}
       </React.Fragment>
     );
   }

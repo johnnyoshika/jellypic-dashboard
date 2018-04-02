@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
-import { deleteComment } from '../../../actions/commentState';
 import View from './View';
 
-const mapDispatchToProps = {
-  deleteComment
-};
-
 const mapStateToProps = state => ({
-  session: state.routes.session,
+  session: state.session,
   commentState: state.commentState
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteComment: (postId, commentId) =>
+    dispatch.commentState.deleteComment({ postId, commentId })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

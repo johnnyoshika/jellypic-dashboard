@@ -18,11 +18,11 @@ class View extends Component {
   }
 
   componentDidMount() {
-    if (this.props.session.state !== 'authenticated') this.props.authenticate();
+    if (this.props.session.status !== 'authenticated') this.props.authenticate();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.session.state === 'anonymous')
+    if (this.props.session.status === 'anonymous')
       this.props.history.replace('/login');
   }
 
@@ -110,16 +110,16 @@ class View extends Component {
   }
 
   renderUploaderState() {
-    if (this.props.uploader.state === 'idle') return null;
+    if (this.props.uploader.status === 'idle') return null;
 
     return (
       <div className="uploader-state">
         <div className="gutter" />
         <div className="uploader-state-content">
-          {this.props.uploader.state === 'error' && (
+          {this.props.uploader.status === 'error' && (
             <div className="error">Error: {this.props.uploader.error}</div>
           )}
-          {this.props.uploader.state === 'saving' && (
+          {this.props.uploader.status === 'saving' && (
             <div className="progress">Finishing up...</div>
           )}
         </div>
@@ -130,9 +130,9 @@ class View extends Component {
 
   render() {
     return ((() => {
-        if (this.props.session.state === 'authenticated')
+        if (this.props.session.status === 'authenticated')
           return this.renderPage();
-        else if (this.props.session.state === 'error')
+        else if (this.props.session.status === 'error')
           return this.renderError();
         else
           return this.renderSpinner();

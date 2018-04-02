@@ -29,7 +29,7 @@ class HomeView extends Component {
     if ((window.innerHeight + window.scrollY) < (document.body.offsetHeight - 500))
       return;
 
-    if (this.props.home.state === 'error')
+    if (this.props.home.status === 'error')
       return;
 
     this.props.fetchNext();
@@ -59,8 +59,8 @@ class HomeView extends Component {
           {this.props.home.posts.map(id => (
             <Card key={id} post={selectPost(this.props.entities, id)} />
           ))}
-          {this.props.home.state === 'error' && this.renderError()}
-          {this.props.home.state === 'loading' && this.renderSpinner()}
+          {this.props.home.status === 'error' && this.renderError()}
+          {this.props.home.status === 'loading' && this.renderSpinner()}
         </div>
         <div className="gutter" />
       </div>

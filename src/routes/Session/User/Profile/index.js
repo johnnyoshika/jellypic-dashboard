@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../../../actions/routes/userProfile';
 import View from './View';
 
-const mapDispatchToProps = {
-  fetchProfile
-};
-
 const mapStateToProps = state => ({
-  userProfile: state.routes.userProfile,
+  userProfile: state.routeUserProfile,
   entities: state.entities
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchProfile: id => dispatch.routeUserProfile.fetchProfile({ id })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

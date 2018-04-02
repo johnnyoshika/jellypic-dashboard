@@ -1,15 +1,14 @@
 import { connect } from 'react-redux';
-import { fetchLatest, fetchNext } from '../../../../actions/routes/userPosts';
 import View from './View';
 
-const mapDispatchToProps = {
-  fetchLatest,
-  fetchNext
-};
-
 const mapStateToProps = state => ({
-  userPosts: state.routes.userPosts,
+  userPosts: state.routeUserPosts,
   entities: state.entities
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchLatest: id => dispatch.routeUserPosts.fetchLatest({ id }),
+  fetchNext: id => dispatch.routeUserPosts.fetchNext({ id })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

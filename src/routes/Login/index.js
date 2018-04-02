@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { checkFacebook, loginWithFacebook } from '../../actions/routes/login';
 import View from './View';
 
-const mapDispatchToProps = {
-  checkFacebook,
-  loginWithFacebook
-};
-
 const mapStateToProps = state => ({
-  login: state.routes.login
+  login: state.login
+});
+
+const mapDispatchToProps = dispatch => ({
+  checkFacebook: dispatch.login.checkFacebook,
+  loginWithFacebook: dispatch.login.loginWithFacebook
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

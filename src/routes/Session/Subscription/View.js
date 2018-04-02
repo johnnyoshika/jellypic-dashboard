@@ -71,7 +71,7 @@ class View extends Component {
         <div className="subscriber-state-content">
           <div className="text-center">
             {(() => {
-              switch (this.props.subscriber.state) {
+              switch (this.props.subscriber.status) {
                 case 'subscribed':
                   return this.renderSubscribed();
                 case 'available':

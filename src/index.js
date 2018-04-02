@@ -1,11 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { init } from '@rematch/core';
+import * as  models from './models'
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
 
-const store = configureStore();
+const store = init({
+  models,
+  redux: {
+    reducers: {
+      toastr
+    }
+  }
+});
 
 render(
   <Provider store={store}>

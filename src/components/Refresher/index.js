@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { setUp, skipWaiting } from '../../actions/refresher';
 import View from './View';
-
-const mapDispatchToProps = {
-  setUp,
-  skipWaiting
-};
 
 const mapStateToProps = state => ({
   refresher: state.refresher
+});
+
+const mapDispatchToProps = dispatch => ({
+  setUp: dispatch.refresher.setUp,
+  skipWaiting: dispatch.refresher.skipWaiting
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);
