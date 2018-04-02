@@ -5,27 +5,27 @@ import { user as userSchema } from '../store/schema';
 
 export default {
   state: {
-    state: 'anonymous', // checking,anonymous,authenticated,error
+    status: 'anonymous', // checking,anonymous,authenticated,error
     error: null,
     user: null
   },
   reducers: {
-    changeState: (state, { newState }) => ({
+    changeStatus: (state, { status }) => ({
       ...state,
-      ...{ state: newState, error: null, user: null }
+      ...{ status: status, error: null, user: null }
     }),
     setSession: (state, { userId }) => ({
       ...state,
-      ...{ state: 'authenticated', user: userId }
+      ...{ status: 'authenticated', user: userId }
     }),
     authenticationFailed: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message, user: null }
+      ...{ status: 'error', error: message, user: null }
     })
   },
   effects: {
     async authenticate(payload, rootState) {
-      this.changeState({ newState: 'checking' });
+      this.changeStatus({ status: 'checking' });
 
       try {
         const response = await request('/api/sessions/me', {
@@ -36,7 +36,7 @@ export default {
         dispatch.entities.add(data.entities);
         this.setSession({ userId: data.result });
       } catch (error) {
-        if (error.status === 401) this.changeState({ newState: 'anonymous' });
+        if (error.status === 401) this.changeStatus({ status: 'anonymous' });
         else this.authenticationFailed({ message: error.message });
       }
     }

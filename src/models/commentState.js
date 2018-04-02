@@ -10,7 +10,7 @@ const makePayload = (postId, data) => {
 };
 
 const save = (postId, url, options) => {
-  dispatch.commentState.changeState({ postId, newState: 'saving' });
+  dispatch.commentState.changeStatus({ postId, status: 'saving' });
 
   return request(url, options).then(
     response => {
@@ -25,21 +25,21 @@ const save = (postId, url, options) => {
 export default {
   state: {},
   reducers: {
-    changeState: (state, { postId, newState }) => ({
+    changeStatus: (state, { postId, status }) => ({
       ...state,
-      ...makePayload(postId, { state: newState, error: null })
+      ...makePayload(postId, { status: status, error: null })
     }),
     saveFailed: (state, { postId, message }) => ({
       ...state,
       ...makePayload(postId, {
-        state: 'error',
+        status: 'error',
         error: message
       })
     }),
     saveSucceeded: (state, { postId }) => ({
       ...state,
       ...makePayload(postId, {
-        state: 'idle',
+        status: 'idle',
         error: null
       })
     })

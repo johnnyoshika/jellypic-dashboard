@@ -28,7 +28,7 @@ class Card extends Component {
   }
 
   checkLikeState(nextProps) {
-    if (this.likeState(nextProps.likeState).state === 'error')
+    if (this.likeState(nextProps.likeState).status === 'error')
       if (this.likeState().error !== this.likeState(nextProps.likeState).error)
         toastr.error(this.likeState(nextProps.likeState).error);
   }
@@ -47,7 +47,7 @@ class Card extends Component {
   }
 
   likeIsDirty() {
-    return this.likeState().state === 'saving';
+    return this.likeState().status === 'saving';
   }
 
   likeState(state) {
@@ -56,15 +56,15 @@ class Card extends Component {
   }
 
   checkCommentState(nextProps) {
-    if (this.commentState(nextProps.commentState).state === 'error')
+    if (this.commentState(nextProps.commentState).status === 'error')
       if (
         this.commentState().error !==
         this.commentState(nextProps.commentState).error
       )
         toastr.error(this.commentState(nextProps.commentState).error);
 
-    if (this.commentState().state === 'saving')
-      if (this.commentState(nextProps.commentState).state !== 'error')
+    if (this.commentState().status === 'saving')
+      if (this.commentState(nextProps.commentState).status !== 'error')
         this.setState({ comment: '' });
   }
 
@@ -87,7 +87,7 @@ class Card extends Component {
   }
 
   commentDisabled() {
-    return this.commentState().state === 'saving';
+    return this.commentState().status === 'saving';
   }
 
   render() {

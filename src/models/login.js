@@ -44,12 +44,12 @@ const checkFacebookLoginStatus = response => {
     */
     login(response.authResponse.accessToken);
   } else {
-    dispatch.login.changeState({ newState: 'ready' });
+    dispatch.login.changeStatus({ status: 'ready' });
   }
 };
 
 const login = (accessToken) => {
-  dispatch.login.changeState({ newState: 'processing' });
+  dispatch.login.changeStatus({ status: 'processing' });
 
   return request('/api/sessions', {
     method: 'POST',
@@ -68,26 +68,26 @@ const login = (accessToken) => {
 
 export default {
   state: {
-    state: 'idle', // idle,processing,ready,success,error
+    status: 'idle', // idle,processing,ready,success,error
     error: null
   },
   reducers: {
-    changeState: (state, { newState }) => ({
+    changeStatus: (state, { status }) => ({
       ...state,
-      ...{ state: newState, error: null }
+      ...{ status: status, error: null }
     }),
     loginFailed: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message }
+      ...{ status: 'error', error: message }
     }),
     loginSucceeded: (state, payload) => ({
       ...state,
-      ...{ state: 'success', error: null }
+      ...{ status: 'success', error: null }
     })
   },
   effects: {
     async checkFacebook(payload, rootState) {
-      this.changeState({ newState: 'processing' });
+      this.changeStatus({ status: 'processing' });
 
       ensureFacebookSdkLoaded(() => {
         window.FB.getLoginStatus(response => {
@@ -96,7 +96,7 @@ export default {
       });
     },
     async loginWithFacebook(payload, rootState) {
-      this.changeState({ newState: 'processing' });
+      this.changeStatus({ status: 'processing' });
       window.FB.login(response => {
         checkFacebookLoginStatus(response);
       });

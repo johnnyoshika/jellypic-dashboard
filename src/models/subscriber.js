@@ -2,7 +2,7 @@ import { dispatch } from '@rematch/core';
 import request from '../utils/request';
 
 const save = (url, options) => {
-  dispatch.subscriber.changeState({ newState: 'saving' });
+  dispatch.subscriber.changeStatus({ status: 'saving' });
   return request(url, options).then(
     response => dispatch.subscriber.check(),
     error => dispatch.subscriber.setError({ message: error.message })
@@ -29,25 +29,25 @@ const urlB64ToUint8Array = base64String => {
 
 export default {
   state: {
-    state: 'idle', // idle,checking,unavailable,available,subscribed,saving,error
+    status: 'idle', // idle,checking,unavailable,available,subscribed,saving,error
     error: null
   },
   reducers: {
-    changeState: (state, { newState }) => ({
+    changeStatus: (state, { status }) => ({
       ...state,
-      ...{ state: newState, error: null }
+      ...{ status: status, error: null }
     }),
     setError: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message }
+      ...{ status: 'error', error: message }
     })
   },
   effects: {
     async check() {
-      this.changeState({ newState: 'checking' });
+      this.changeStatus({ status: 'checking' });
 
       if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-        this.changeState({ newState: 'unavailable' });
+        this.changeStatus({ status: 'unavailable' });
         return;
       }
 
@@ -70,7 +70,7 @@ export default {
         const registration = await navigator.serviceWorker.ready;
         const subscription = await registration.pushManager.getSubscription();
 
-        if (!subscription) return this.changeState({ newState: 'available' });
+        if (!subscription) return this.changeStatus({ status: 'available' });
 
         try {
           await request(
@@ -80,9 +80,9 @@ export default {
               credentials: 'include'
             }
           );
-          this.changeState({ newState: 'subscribed' });
+          this.changeStatus({ status: 'subscribed' });
         } catch (error) {
-          this.changeState({ newState: 'available' });
+          this.changeStatus({ status: 'available' });
         }
       } catch (error) {
         this.setError({

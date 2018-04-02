@@ -2,12 +2,12 @@ let isSetUp;
 
 export default {
   state: {
-    state: 'fresh' // fresh,stale,activating
+    status: 'fresh' // fresh,stale,activating
   },
   reducers: {
-    changeState: (state, { newState }) => ({
+    changeStatus: (state, { status }) => ({
       ...state,
-      ...{ state: newState }
+      ...{ status: status }
     })
   },
   effects: {
@@ -33,12 +33,12 @@ export default {
 
       // SW is waiting to activate. Can occur if multiple clients open and
       // one of the clients is refreshed
-      if (registration.waiting) return this.changeState({ newState: 'stale' });
+      if (registration.waiting) return this.changeStatus({ status: 'stale' });
 
       const listenInstalledStateChange = () => {
         registration.installing.addEventListener('statechange', e => {
           if (e.target.state === 'installed')
-            this.changeState({ newState: 'stale' });
+            this.changeStatus({ status: 'stale' });
         });
       };
 
@@ -54,7 +54,7 @@ export default {
       // double checking to make sure registration.waiting is available
       if (!registration.waiting) return;
 
-      this.changeState({ newState: 'activating' });
+      this.changeStatus({ status: 'activating' });
       registration.waiting.postMessage('skipWaiting');
     }
   }

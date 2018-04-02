@@ -6,22 +6,22 @@ import { post as postSchema } from '../store/schema';
 export default {
   state: {
     id: null,
-    state: 'idle', // loading,idle,error,success
+    status: 'idle', // loading,idle,error,success
     error: null
   },
   reducers: {
-    changeState: (state, { id, newState }) => ({
+    changeStatus: (state, { id, status }) => ({
       ...state,
-      ...{ id: id, state: newState, error: null }
+      ...{ id: id, status: status, error: null }
     }),
     fetchFailed: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message }
+      ...{ status: 'error', error: message }
     })
   },
   effects: {
     async fetchPost({ id }, rootState) {
-      this.changeState({ id, newState: 'loading' });
+      this.changeStatus({ id, status: 'loading' });
 
       try {
         const response = await request(`/api/posts/${id}`, {
@@ -30,7 +30,7 @@ export default {
 
         const data = normalize(response.json, postSchema);
         dispatch.entities.add(data.entities);
-        this.changeState({ id, newState: 'success' });
+        this.changeStatus({ id, status: 'success' });
       } catch (error) {
         this.fetchFailed({ message: error.message });
       }

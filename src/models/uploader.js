@@ -5,26 +5,26 @@ import { post as postSchema } from '../store/schema';
 
 export default {
   state: {
-    state: 'idle', // idle,saving,error
+    status: 'idle', // idle,saving,error
     error: null
   },
   reducers: {
-    changeState: (state, { newState }) => ({
+    changeStatus: (state, { status }) => ({
       ...state,
-      ...{ state: newState, error: null }
+      ...{ status: status, error: null }
     }),
     saveFailed: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message }
+      ...{ status: 'error', error: message }
     }),
     saveSucceeded: state => ({
       ...state,
-      ...{ state: 'idle', error: null }
+      ...{ status: 'idle', error: null }
     })
   },
   effects: {
     async savePost({ cloudinaryPublicIds }, rootState) {
-      this.changeState({ newState: 'saving' });
+      this.changeStatus({ status: 'saving' });
 
       try {
         const response = await request('/api/posts', {

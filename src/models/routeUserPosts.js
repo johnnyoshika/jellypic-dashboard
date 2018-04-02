@@ -3,15 +3,15 @@ import { normalize } from 'normalizr';
 import request from '../utils/request';
 import { post as postSchema } from '../store/schema';
 
-const fetchPosts = (rootState, id, url, nextState) => {
+const fetchPosts = (rootState, id, url, nextStatus) => {
   if (!url) return Promise.resolve({ data: [] });
   if (
-    rootState.routeUserPosts.state === 'loading' ||
-    rootState.routeUserPosts.state === 'refreshing'
+    rootState.routeUserPosts.status === 'loading' ||
+    rootState.routeUserPosts.status === 'refreshing'
   )
     return Promise.resolve({ data: [] });
 
-  dispatch.routeUserPosts.changeState({ id, newState: nextState });
+  dispatch.routeUserPosts.changeStatus({ id, status: nextStatus });
 
   return request(url, {
     credentials: 'include'
@@ -28,23 +28,23 @@ const fetchPosts = (rootState, id, url, nextState) => {
 export default {
   state: {
     id: null,
-    state: 'idle', // refreshing,loading,idle,error
+    status: 'idle', // refreshing,loading,idle,error
     error: null,
     nextUrl: null,
     posts: []
   },
   reducers: {
-    changeState: (state, { id, newState }) => ({
+    changeStatus: (state, { id, status }) => ({
       ...state,
-      ...{ id: id, state: newState, error: null }
+      ...{ id: id, status: status, error: null }
     }),
     fetchFailed: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message }
+      ...{ status: 'error', error: message }
     }),
     fetchSucceeded: (state, { nextUrl }) => ({
       ...state,
-      ...{ state: 'idle', nextUrl }
+      ...{ status: 'idle', nextUrl }
     }),
     replacePosts: (state, { posts }) => ({
       ...state,
@@ -67,7 +67,7 @@ export default {
         if (posts.length) this.replacePosts({ posts });
       } catch (error) {
         if (rootState.routeUserPosts.posts.length)
-          this.changeState({ newState: 'idle' });
+          this.changeStatus({ status: 'idle' });
         else this.fetchFailed({ message: error.message });
       }
     },

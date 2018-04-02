@@ -5,10 +5,10 @@ import { post as postSchema } from '../store/schema';
 
 const fetchPosts = (rootState, url) => {
   if (!url) return Promise.resolve({ data: [] });
-  if (rootState.routeHome.state === 'loading')
+  if (rootState.routeHome.status === 'loading')
     return Promise.resolve({ data: [] });
 
-  dispatch.routeHome.changeState({ newState: 'loading' });
+  dispatch.routeHome.changeStatus({ status: 'loading' });
 
   return request(url, {
     credentials: 'include'
@@ -24,24 +24,24 @@ const fetchPosts = (rootState, url) => {
 
 export default {
   state: {
-    state: 'idle', // loading,idle,error
+    status: 'idle', // loading,idle,error
     error: null,
     url: '/api/posts',
     nextUrl: null,
     posts: []
   },
   reducers: {
-    changeState: (state, { newState }) => ({
+    changeStatus: (state, { status }) => ({
       ...state,
-      ...{ state: newState, error: null }
+      ...{ status: status, error: null }
     }),
     fetchFailed: (state, { message }) => ({
       ...state,
-      ...{ state: 'error', error: message }
+      ...{ status: 'error', error: message }
     }),
     fetchSucceeded: (state, { nextUrl }) => ({
       ...state,
-      ...{ state: 'idle', nextUrl }
+      ...{ status: 'idle', nextUrl }
     }),
     replacePosts: (state, { posts }) => ({
       ...state,
@@ -63,7 +63,7 @@ export default {
         if (posts.length) this.replacePosts({ posts });
       } catch (error) {
         if (rootState.routeHome.posts.length)
-          this.changeState({ newState: 'idle' });
+          this.changeStatus({ status: 'idle' });
         else this.fetchFailed({ message: error.message });
       }
     },

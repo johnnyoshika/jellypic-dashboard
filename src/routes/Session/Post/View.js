@@ -41,7 +41,7 @@ class PostView extends Component {
         <div className="gutter" />
         <div className="post-main">
           {(() => {
-            switch (this.props.post.state) {
+            switch (this.props.post.status) {
               case 'error':
                 return this.renderError();
               case 'loading':
