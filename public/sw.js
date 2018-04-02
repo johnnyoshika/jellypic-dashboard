@@ -57,11 +57,27 @@ workbox.routing.registerRoute(
   'DELETE'
 );
 
+// Earliest registered matching route takes precedence: https://developers.google.com/web/tools/workbox/reference-docs/latest/workbox.routing
+workbox.routing.registerRoute(
+  new RegExp('/api/(posts|users|sessions|profiles)(.*)'),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'api' + version,
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 100
+      }),
+      new workbox.broadcastUpdate.Plugin('api-updates', {
+        headersToCheck: ['Date'] // use `Date` to force broadcasting on every update
+      })
+    ]
+  })
+);
+
 workbox.routing.registerRoute(
   new RegExp('/api/(.*)'),
   workbox.strategies.networkFirst({
     networkTimetoutSeconds: 5, // sadly this doesn't seem to work
-    cacheName: 'api-' + version,
+    cacheName: 'api-network' + version,
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 100
