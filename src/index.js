@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { init } from '@rematch/core';
 import * as  models from './models'
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
@@ -13,8 +12,7 @@ const store = init({
   redux: {
     reducers: {
       toastr
-    },
-    middlewares: [thunk]
+    }
   }
 });
 
