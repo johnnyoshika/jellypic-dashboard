@@ -10,6 +10,10 @@ class PostView extends Component {
     this.props.fetchPost(parseInt(this.props.match.params.id, 10));
   }
 
+  post() {
+    return selectPost(this.props.entities, this.props.post.id);
+  }
+
   renderError() {
     return (
       <div className="text-center">
@@ -30,7 +34,7 @@ class PostView extends Component {
     return (
       <Card
         key={this.props.match.params.id}
-        post={selectPost(this.props.entities, this.props.post.id)}
+        post={this.post()}
       />
     );
   }
@@ -40,18 +44,9 @@ class PostView extends Component {
       <div className="post-container">
         <div className="gutter" />
         <div className="post-main">
-          {(() => {
-            switch (this.props.post.status) {
-              case 'error':
-                return this.renderError();
-              case 'loading':
-                return this.renderSpinner();
-              case 'success':
-                return this.renderPost();
-              default:
-                return null;
-            }
-          })()}
+          {this.post() && this.renderPost()}
+          {this.props.post.status === 'error' && !this.post() && this.renderError()}
+          {this.props.post.status === 'loading' && !this.post() && this.renderSpinner()}
         </div>
         <div className="gutter" />
       </div>

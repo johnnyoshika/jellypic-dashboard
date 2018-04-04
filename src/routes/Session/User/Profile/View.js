@@ -14,7 +14,18 @@ class ProfileView extends Component {
     }
   }
 
+  user() {
+    return selectUser(this.props.entities, this.props.userProfile.id);
+  }
+
+  profile() {
+    return selectProfile(this.props.entities, this.props.userProfile.id);
+  }
+
   renderError() {
+    if (this.profile())
+      return (null);
+
     return (
       <div className="text-center">
         <ErrorMessage message={this.props.userProfile.error} />
@@ -23,6 +34,9 @@ class ProfileView extends Component {
   }
 
   renderSpinner() {
+    if (this.profile())
+      return (null);
+
     return (
       <div className="text-center">
         <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
@@ -34,8 +48,12 @@ class ProfileView extends Component {
     // use id in redux state (this.props.userProfile.id) instead of this.props.id
     // which comes from the router, as this.props.id gets immediately changed when the route
     // changes before this.props.userProfile.status has a chance to switch from 'success' to 'loading'
-    const user = selectUser(this.props.entities, this.props.userProfile.id);
-    const profile = selectProfile(this.props.entities, this.props.userProfile.id);
+
+    const user = this.user();
+    const profile =this.profile();
+
+    if (!user || !profile)
+      return (null);
 
     return (
       <div className="profile-headline">
@@ -73,18 +91,9 @@ class ProfileView extends Component {
   render() {
     return (
       <div className="vertical-center">
-        {(() => {
-          switch (this.props.userProfile.status) {
-            case 'error':
-              return this.renderError();
-            case 'loading':
-              return this.renderSpinner();
-            case 'success':
-              return this.renderProfile();
-            default:
-              return null;
-          }
-        })()}
+        {this.renderProfile()}
+        {this.props.userProfile.status === 'error' && this.renderError()}
+        {this.props.userProfile.status === 'loading' && this.renderSpinner()}
       </div>
     );
   }

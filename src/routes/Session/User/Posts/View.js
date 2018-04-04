@@ -35,7 +35,9 @@ class PostsView extends Component {
     if (window.innerHeight + window.scrollY < document.body.offsetHeight - 500)
       return;
 
-    if (this.props.userPosts.status === 'error') return;
+    if (this.props.userPosts.status !== 'idle') return;
+    
+    if (!this.props.userPosts.nextUrl) return;
 
     this.props.fetchNext(this.props.userPosts.id);
   }
@@ -52,14 +54,6 @@ class PostsView extends Component {
     return (
       <div className="text-center mt-40 mb-40">
         <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-      </div>
-    );
-  }
-
-  renderPosts() {
-    return (
-      <div className="profile-photos">
-        {this.props.userPosts.posts.map(id => this.renderPost(id))}
       </div>
     );
   }
@@ -88,14 +82,9 @@ class PostsView extends Component {
   render() {
     return (
       <React.Fragment>
-        {(() => {
-          switch (this.props.userPosts.status) {
-            case 'refreshing':
-              return this.renderSpinner();
-            default:
-              return this.renderPosts();
-          }
-        })()}
+        <div className="profile-photos">
+          {this.props.userPosts.posts.map(id => this.renderPost(id))}
+        </div>
         {this.props.userPosts.status === 'error' && this.renderError()}
         {this.props.userPosts.status === 'loading' && this.renderSpinner()}
       </React.Fragment>

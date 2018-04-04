@@ -23,14 +23,14 @@ class HomeView extends Component {
   }
 
   onScroll() {
-    if (!this.props.home.posts.length)
+    if (!this.props.home.posts.length) return;
+
+    if (window.innerHeight + window.scrollY < document.body.offsetHeight - 500)
       return;
 
-    if ((window.innerHeight + window.scrollY) < (document.body.offsetHeight - 500))
-      return;
+    if (this.props.home.status !== 'idle') return;
 
-    if (this.props.home.status === 'error')
-      return;
+    if (!this.props.home.nextUrl) return;
 
     this.props.fetchNext();
   }
