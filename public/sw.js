@@ -65,7 +65,23 @@ workbox.routing.registerRoute(
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 100
-      })
+      }),
+      {
+        cacheDidUpdate: async ({
+          cacheName,
+          request,
+          oldResponse,
+          newResponse
+        }) => {
+          const clients = await self.clients.matchAll();
+          for (const client of clients)
+            client.postMessage({
+              type: 'api-updates',
+              url: request.url,
+              cacheName
+            });
+        }
+      }
     ]
   })
 );
