@@ -7,7 +7,6 @@ import {
 } from '../store/schema';
 
 if ('serviceWorker' in navigator) {
-  console.log('register message listener');
   navigator.serviceWorker.addEventListener('message', async e => {
     if (e.data.type !== 'api-updates') return;
 
@@ -31,7 +30,6 @@ if ('serviceWorker' in navigator) {
 }
 
 const refresh = async (url, cacheName, schema) => {
-  console.log('refreshing');
   const cache = await caches.open(cacheName);
   const response = await cache.match(url);
   const json = await response.json();
@@ -42,7 +40,6 @@ const refresh = async (url, cacheName, schema) => {
   else
     data = normalize(json, schema);
 
-  console.log('adding', data.entities);
   dispatch.entities.add(data.entities);
 };
 
