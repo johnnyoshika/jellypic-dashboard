@@ -3,15 +3,12 @@ import { normalize } from 'normalizr';
 import request from '../utils/request';
 import { post as postSchema } from '../store/schema';
 
-const fetchPosts = (rootState, id, url, nextStatus) => {
+const fetchPosts = (rootState, id, url) => {
   if (!url) return Promise.resolve({ data: [] });
-  if (
-    rootState.routeUserPosts.status === 'loading' ||
-    rootState.routeUserPosts.status === 'refreshing'
-  )
+  if (rootState.routeUserPosts.status === 'loading')
     return Promise.resolve({ data: [] });
 
-  dispatch.routeUserPosts.changeStatus({ id, status: nextStatus });
+  dispatch.routeUserPosts.changeStatus({ id, status: 'loading' });
 
   return request(url, {
     credentials: 'include'
@@ -28,7 +25,7 @@ const fetchPosts = (rootState, id, url, nextStatus) => {
 export default {
   state: {
     id: null,
-    status: 'idle', // refreshing,loading,idle,error
+    status: 'idle', // loading,idle,error
     error: null,
     nextUrl: null,
     posts: []
@@ -61,8 +58,7 @@ export default {
         const posts = await fetchPosts(
           rootState,
           id,
-          `/api/posts?userId=${id}`,
-          'refreshing'
+          `/api/posts?userId=${id}`
         );
         if (posts.length) this.replacePosts({ posts });
       } catch (error) {
