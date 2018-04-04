@@ -1,5 +1,3 @@
-let isSetUp;
-
 export default {
   state: {
     status: 'fresh' // fresh,stale,activating
@@ -12,8 +10,6 @@ export default {
   },
   effects: {
     async setUp(payload, rootState) {
-      if (isSetUp) return (isSetUp = true);
-
       if (!('serviceWorker' in navigator)) return;
 
       const registration = await navigator.serviceWorker.ready;
