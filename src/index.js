@@ -1,14 +1,34 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { init } from '@rematch/core';
-import * as  models from './models'
+import createRematchPersist from '@rematch/persist';
+import { getPersistor } from '@rematch/persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import * as models from './models';
 import { Provider } from 'react-redux';
 import { reducer as toastr } from 'react-redux-toastr';
 import './index.css';
 import App from './App';
 
+const persistPlugin = createRematchPersist({
+  key: 'root',
+  storage,
+  whitelist: [
+    'routeUserPosts',
+    'routeUserProfile',
+    'routePost',
+    'routeHome',
+    'session',
+    'entities'
+  ],
+  throttle: 3000,
+  version: 1
+});
+
 const store = init({
   models,
+  plugins: [persistPlugin],
   redux: {
     reducers: {
       toastr
@@ -16,9 +36,13 @@ const store = init({
   }
 });
 
+const persistor = getPersistor();
+
 render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
