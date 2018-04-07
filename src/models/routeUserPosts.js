@@ -22,6 +22,16 @@ const fetchPosts = (rootState, id, url) => {
   });
 };
 
+const getUserPostIds = (userId, rootState) => {
+  if (!rootState.entities.hasOwnProperty('posts')) return [];
+
+  return Object.keys(rootState.entities.posts)
+    .map(key => rootState.entities.posts[key])
+    .filter(post => post.user === userId)
+    .sort((a, b) => b.createdAt - a.createdAt)
+    .map(post => post.id);
+};
+
 export default {
   state: {
     id: null,
@@ -47,6 +57,10 @@ export default {
       ...state,
       ...{ posts: posts.map(p => p.id) }
     }),
+    replacePostIds: (state, { postsIds }) => ({
+      ...state,
+      ...{ posts: postsIds }
+    }),
     appendPosts: (state, { posts }) => ({
       ...state,
       ...{ posts: [...state.posts, ...posts.map(p => p.id)] }
@@ -54,6 +68,7 @@ export default {
   },
   effects: {
     async fetchLatest({ id }, rootState) {
+      this.replacePostIds({ postsIds: getUserPostIds(id, rootState) });
       try {
         const posts = await fetchPosts(
           rootState,
