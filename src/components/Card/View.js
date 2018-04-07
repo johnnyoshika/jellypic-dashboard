@@ -123,8 +123,8 @@ class Card extends Component {
             cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}
             publicId={this.props.post.cloudinaryPublicId}
             crop="fit"
-            height="600"
-            width="600"
+            width="auto"
+            responsive
             secure
           />
         </div>
