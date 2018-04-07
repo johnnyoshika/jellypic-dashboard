@@ -33,7 +33,7 @@ workbox.precaching.precacheAndRoute([]);
 workbox.routing.registerRoute(
   new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
   workbox.strategies.cacheFirst({
-    cacheName: 'googlefonts-' + version,
+    cacheName: 'googlefonts',
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 5
@@ -46,7 +46,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp('https://maxcdn.bootstrapcdn.com/font-awesome/(.*)'),
   workbox.strategies.cacheFirst({
-    cacheName: 'fontawesome-' + version,
+    cacheName: 'fontawesome',
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 20
@@ -59,7 +59,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp('https://res.cloudinary.com/(.*)'),
   workbox.strategies.cacheFirst({
-    cacheName: 'cloudinary-' + version,
+    cacheName: 'cloudinary',
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 200
@@ -72,7 +72,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   /\.(?:js|css)$/,
   workbox.strategies.cacheFirst({
-    cacheName: 'static-resources-' + version,
+    cacheName: 'static-resources',
     plugins: [
       new workbox.expiration.Plugin({
         maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
