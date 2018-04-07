@@ -29,35 +29,6 @@ workbox.core.setCacheNameDetails({
 // Workbox will populate this list (as defined in workbox-config.js) during build.
 workbox.precaching.precacheAndRoute([]);
 
-workbox.routing.registerRoute(
-  new RegExp('/api/(.*)'),
-  workbox.strategies.networkFirst({
-    networkTimetoutSeconds: 5, // sadly this doesn't seem to work
-    cacheName: 'api-' + version,
-    plugins: [
-      new workbox.expiration.Plugin({
-        maxEntries: 100
-      }),
-      {
-        cacheDidUpdate: async ({
-          cacheName,
-          request,
-          oldResponse,
-          newResponse
-        }) => {
-          const clients = await self.clients.matchAll();
-          for (const client of clients)
-            client.postMessage({
-              type: 'api-updates',
-              url: request.url,
-              cacheName
-            });
-        }
-      }
-    ]
-  })
-);
-
 // Google font css and woff2 files
 workbox.routing.registerRoute(
   new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
