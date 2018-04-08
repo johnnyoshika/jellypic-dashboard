@@ -5,10 +5,7 @@ import { selectPost } from '../../../utils/selectors';
 import './Styles.css';
 
 const InfiniteScroll = WithInfiniteScroll(
-  props =>
-    props.home.posts.length &&
-    props.home.status !== 'loading' &&
-    props.home.nextUrl,
+  props => props.home.posts.length && props.home.nextUrl,
   props => props.fetchNext(),
   props => props.home.status === 'error',
   props => props.home.status === 'loading'

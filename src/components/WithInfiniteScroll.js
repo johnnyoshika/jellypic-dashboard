@@ -26,6 +26,8 @@ export default (
 
     onScroll() {
       if (!infiniteScrollConditional(this.props)) return;
+      if (spinnerConditional(this.props)) return;
+      if (errorConditional(this.props)) return;
   
       if (window.innerHeight + window.scrollY < document.body.offsetHeight - 500)
         return;
