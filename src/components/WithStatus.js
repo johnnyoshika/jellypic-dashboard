@@ -1,13 +1,13 @@
 import React from 'react';
-import MaybeError from './MaybeError';
-import MaybeSpinner from './MaybeSpinner';
+import WithError from './WithError';
+import WithSpinner from './WithSpinner';
 
 export default (errorConditional, spinnerConditional) => ({
   message,
   ...props
 }) => {
-  const Error = MaybeError(errorConditional);
-  const Spinner = MaybeSpinner(spinnerConditional);
+  const Error = WithError(errorConditional);
+  const Spinner = WithSpinner(spinnerConditional);
   return (
     <Error message={message} {...props}>
       <Spinner {...props} />

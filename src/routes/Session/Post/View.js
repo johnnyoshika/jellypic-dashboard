@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Card from '../../../components/Card';
-import MaybeStatus from '../../../components/MaybeStatus';
+import WithStatus from '../../../components/WithStatus';
 import { selectPost } from '../../../utils/selectors';
 import './Styles.css';
 
 const getPost = props => selectPost(props.entities, props.post.id);
 
-const Status = MaybeStatus(
+const Status = WithStatus(
   props => props.post.status === 'error' && !getPost(props),
   props => props.post.status === 'loading' && !getPost(props)
 );

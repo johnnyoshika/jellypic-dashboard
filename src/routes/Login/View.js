@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MaybeError from '../../components/MaybeError';
+import WithError from '../../components/WithError';
 import './Styles.css';
 
-const Status = MaybeError(
+const Status = WithError(
   props => props.login.status === 'error'
 );
 

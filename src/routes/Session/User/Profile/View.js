@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import MaybeStatus from '../../../../components/MaybeStatus';
+import WithStatus from '../../../../components/WithStatus';
 import { selectUser, selectProfile } from '../../../../utils/selectors';
 
 const getUser = props => selectUser(props.entities, props.userProfile.id);
 const getProfile = props => selectProfile(props.entities, props.userProfile.id);
 
-const Status = MaybeStatus(
+const Status = WithStatus(
   props => props.userProfile.status === 'error' && !getProfile(props),
   props => props.userProfile.status === 'loading' && !getProfile(props)
 );

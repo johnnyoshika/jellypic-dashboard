@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Card from '../../../components/Card';
-import MaybeStatus from '../../../components/MaybeStatus';
+import WithStatus from '../../../components/WithStatus';
 import { selectPost } from '../../../utils/selectors';
 import './Styles.css';
 
-const Status = MaybeStatus(
+const Status = WithStatus(
   props => props.home.status === 'error',
   props => props.home.status === 'loading'
 );

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import MaybeStatus from '../../../../components/MaybeStatus';
+import WithStatus from '../../../../components/WithStatus';
 import { selectPost } from '../../../../utils/selectors';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 
-const Status = MaybeStatus(
+const Status = WithStatus(
   props => props.userPosts.status === 'error',
   props => props.userPosts.status === 'loading'
 );
