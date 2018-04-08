@@ -23,7 +23,8 @@ const persistPlugin = createRematchPersist({
     'entities'
   ],
   throttle: 3000,
-  version: 1
+  version: 1,
+  debug: process.env.NODE_ENV !== 'production'
 });
 
 const store = init({
