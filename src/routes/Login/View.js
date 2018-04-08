@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import ErrorMessage from '../../components/ErrorMessage';
+import MaybeError from '../../components/MaybeError';
 import './Styles.css';
+
+const Status = MaybeError(
+  props => props.login.status === 'error'
+);
 
 class View extends Component {
   componentDidMount() {
@@ -25,16 +29,15 @@ class View extends Component {
         <div className="login-main">
           <div className="font-lobster text-center mb-40">Jellypic</div>
           <div className="text-center">
-            <button
-              className="btn btn-primary btn-lg"
-              disabled={this.disabled()}
-              onClick={() => this.props.loginWithFacebook()}
-            >
-              Log in with Facebook
-            </button>
-            {this.props.login.status === 'error' && (
-              <ErrorMessage message={this.props.login.error} />
-            )}
+            <Status message={this.props.login.error} {...this.props}>
+              <button
+                className="btn btn-primary btn-lg"
+                disabled={this.disabled()}
+                onClick={() => this.props.loginWithFacebook()}
+              >
+                Log in with Facebook
+              </button>
+            </Status>
           </div>
         </div>
         <div className="gutter" />
