@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink } from 'react-router-dom';
-import ErrorMessage from '../../components/ErrorMessage';
 import Uploader from '../../components/Uploader';
 import Home from './Home';
 import Post from './Post';
@@ -43,7 +42,7 @@ class View extends Component {
             >
               Try again!
             </button>
-            <ErrorMessage message={this.props.session.error} />
+            <div className="error">{this.props.session.error}</div>
           </div>
         </div>
         <div className="gutter" />

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
-import ErrorMessage from '../../../../components/ErrorMessage';
+import MaybeStatus from '../../../../components/MaybeStatus';
 import { selectUser, selectProfile } from '../../../../utils/selectors';
+
+const getUser = props => selectUser(props.entities, props.userProfile.id);
+const getProfile = props => selectProfile(props.entities, props.userProfile.id);
+
+const Status = MaybeStatus(
+  props => props.userProfile.status === 'error' && !getProfile(props),
+  props => props.userProfile.status === 'loading' && !getProfile(props)
+);
 
 class ProfileView extends Component {
   componentDidMount() {
@@ -14,43 +22,13 @@ class ProfileView extends Component {
     }
   }
 
-  user() {
-    return selectUser(this.props.entities, this.props.userProfile.id);
-  }
-
-  profile() {
-    return selectProfile(this.props.entities, this.props.userProfile.id);
-  }
-
-  renderError() {
-    if (this.profile())
-      return (null);
-
-    return (
-      <div className="text-center">
-        <ErrorMessage message={this.props.userProfile.error} />
-      </div>
-    );
-  }
-
-  renderSpinner() {
-    if (this.profile())
-      return (null);
-
-    return (
-      <div className="text-center">
-        <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-      </div>
-    );
-  }
-
   renderProfile() {
     // use id in redux state (this.props.userProfile.id) instead of this.props.id
     // which comes from the router, as this.props.id gets immediately changed when the route
     // changes before this.props.userProfile.status has a chance to switch from 'success' to 'loading'
 
-    const user = this.user();
-    const profile =this.profile();
+    const user = getUser(this.props);
+    const profile = getProfile(this.props);
 
     if (!user || !profile)
       return (null);
@@ -91,9 +69,9 @@ class ProfileView extends Component {
   render() {
     return (
       <div className="vertical-center">
-        {this.renderProfile()}
-        {this.props.userProfile.status === 'error' && this.renderError()}
-        {this.props.userProfile.status === 'loading' && this.renderSpinner()}
+        <Status message={this.props.userProfile.error} {...this.props}>
+          {this.renderProfile()}
+        </Status>
       </div>
     );
   }
