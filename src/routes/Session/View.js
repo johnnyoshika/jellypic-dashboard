@@ -8,8 +8,8 @@ import User from './User';
 import './Styles.css';
 
 class View extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     // REACT ES6 classes don't autobind, so bind it in the constructor
     // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes

@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import './Styles.css';
 
 class Card extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       comment: ''
