@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import ErrorMessage from '../../../../components/ErrorMessage';
+import MaybeStatus from '../../../../components/MaybeStatus';
 import { selectPost } from '../../../../utils/selectors';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
+
+const Status = MaybeStatus(
+  props => props.userPosts.status === 'error',
+  props => props.userPosts.status === 'loading'
+);
 
 class PostsView extends Component {
   constructor() {
@@ -42,22 +47,6 @@ class PostsView extends Component {
     this.props.fetchNext(this.props.userPosts.id);
   }
 
-  renderError() {
-    return (
-      <div className="text-center mt-40 mb-40">
-        <ErrorMessage message={this.props.userPosts.error} />
-      </div>
-    );
-  }
-
-  renderSpinner() {
-    return (
-      <div className="text-center mt-40 mb-40">
-        <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-      </div>
-    );
-  }
-
   renderPost(id) {
     const post = selectPost(this.props.entities, id);
     return (
@@ -81,13 +70,11 @@ class PostsView extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Status message={this.props.userPosts.error} {...this.props}>
         <div className="profile-photos">
           {this.props.userPosts.posts.map(id => this.renderPost(id))}
         </div>
-        {this.props.userPosts.status === 'error' && this.renderError()}
-        {this.props.userPosts.status === 'loading' && this.renderSpinner()}
-      </React.Fragment>
+      </Status>
     );
   }
 }
