@@ -6,7 +6,7 @@ import './Styles.css';
 
 const InfiniteScroll = WithInfiniteScroll(
   props => props.home.posts.length && props.home.nextUrl,
-  props => props.fetchNext(),
+  props => props.home.posts.length ? props.fetchNext() : props.fetchLatest(),
   props => props.home.status === 'error',
   props => props.home.status === 'loading'
 );

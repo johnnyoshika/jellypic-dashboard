@@ -6,7 +6,7 @@ import { Image } from 'cloudinary-react';
 
 const InfiniteScroll = WithInfiniteScroll(
   props => props.userPosts.posts.length && props.userPosts.nextUrl,
-  props => props.fetchNext(props.userPosts.id),
+  props => props.userPosts.posts.length ? props.fetchNext(props.userPosts.id) : props.fetchLatest(props.id),
   props => props.userPosts.status === 'error',
   props => props.userPosts.status === 'loading'
 );
