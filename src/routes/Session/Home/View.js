@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import Card from '../../../components/Card';
-import ErrorMessage from '../../../components/ErrorMessage';
+import MaybeStatus from '../../../components/MaybeStatus';
 import { selectPost } from '../../../utils/selectors';
 import './Styles.css';
+
+const Status = MaybeStatus(
+  props => props.home.status === 'error',
+  props => props.home.status === 'loading'
+);
 
 class HomeView extends Component {
   constructor() {
@@ -35,32 +40,16 @@ class HomeView extends Component {
     this.props.fetchNext();
   }
 
-  renderError() {
-    return (
-      <div className="text-center">
-        <ErrorMessage message={this.props.home.error} />
-      </div>
-    );
-  }
-
-  renderSpinner() {
-    return (
-      <div className="text-center">
-        <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-      </div>
-    );
-  }
-
   render() {
     return (
       <div className="home-container">
         <div className="gutter" />
         <div className="home-main">
-          {this.props.home.posts.map(id => (
-            <Card key={id} post={selectPost(this.props.entities, id)} />
-          ))}
-          {this.props.home.status === 'error' && this.renderError()}
-          {this.props.home.status === 'loading' && this.renderSpinner()}
+          <Status message={this.props.home.error} {...this.props}>
+            {this.props.home.posts.map(id => (
+              <Card key={id} post={selectPost(this.props.entities, id)} />
+            ))}
+          </Status>
         </div>
         <div className="gutter" />
       </div>
