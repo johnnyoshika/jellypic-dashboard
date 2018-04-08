@@ -1,8 +1,22 @@
 # Jellypic Dashboard
 
-Jellypic is a sample app to demonstrate the capabilities of Progressive Web Apps.
+Jellypic is a sample app to demonstrate the capabilities of Progressive Web Apps, including:
+* Offline first readonly in:
+  * Chrome, Firefox, Opera
+  * Edge on Windows 10 1803+
+  * Safari 11.1+ (iOS 11.3+ and macOS 10.13.4+)
+* Saving changes still requires device to be online, but I hope to change that soon
+* Push notifications on:
+  * Chrome on Android
+  * Chrome on Windows
+  * Chrome on macOS
 
-Project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+Project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and uses the following technologies:
+* Service Worker
+* Push API
+* React.js
+* Redux / Rematch
+* CSS Grid
 
 ## Setup
 * `git clone {repository url}`
