@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class View extends Component {
   onDeleteClick = () => {
@@ -13,7 +14,9 @@ class View extends Component {
     return (
       <div className="card-info-comment">
         <div className="card-info-comment-user pull-left">
-          <a href="">{this.props.comment.user.username}</a>
+          <Link to={'/users/' + this.props.comment.user.id}>
+            {this.props.comment.user.username}
+          </Link>
         </div>
         {this.props.session.user === this.props.comment.user.id && (
           <div className="pull-right">
