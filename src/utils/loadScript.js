@@ -1,7 +1,7 @@
 const assets = {};
 
 // source: https://stackoverflow.com/a/44325793/188740
-export default function loadScript(url) {
+export default function(url) {
   return new Promise((resolve, reject) => {
     if (assets[url]) {
       if (assets[url].loaded) {
