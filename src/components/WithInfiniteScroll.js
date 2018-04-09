@@ -12,8 +12,9 @@ export default (
     constructor(props) {
       super(props);
 
-      // REACT ES6 classes don't autobind, so bind it in the constructor
-      // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
+      // In this article: https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
+      // it's suggested in this comment: https://medium.com/@OllyD/also-to-note-something-very-important-ec8015361df5
+      // that consructor binding is required in addition to function arrows if we're adding and removing listeners
       this.onScroll = this.onScroll.bind(this);
     }
 
@@ -25,7 +26,7 @@ export default (
       window.removeEventListener('scroll', this.onScroll, false);
     }
 
-    onScroll() {
+    onScroll = () => {
       if (!infiniteScrollConditional(this.props)) return;
       if (spinnerConditional(this.props)) return;
       if (errorConditional(this.props)) return;
@@ -37,7 +38,7 @@ export default (
         return;
 
       onInfiniteScrollFetch(this.props);
-    }
+    };
 
     render() {
       const Status = WithStatus(errorConditional, spinnerConditional);

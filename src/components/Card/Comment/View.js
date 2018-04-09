@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 
 class View extends Component {
-  constructor(props) {
-    super(props);
-
-    // REACT ES6 classes don't autobind, so bind it in the constructor
-    // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
-    this.onDeleteClick = this.onDeleteClick.bind(this);
-  }
-
-  onDeleteClick() {
+  onDeleteClick = () => {
     // Known issue:
     // b/c this shares the same state as Card.js' add comment (in commentState.state[postId])
     // state changes (i.e. opacityc change) will be reflected the comment text box and not in the comment that we're trying to delete.
     // So while we're trying to delete this comment, the comment text box's opacity will be reduced.
     this.props.deleteComment(this.props.postId, this.props.comment.id);
-  }
+  };
 
   render() {
     return (

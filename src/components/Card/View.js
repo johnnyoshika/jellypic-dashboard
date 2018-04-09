@@ -13,13 +13,6 @@ class Card extends Component {
     this.state = {
       comment: ''
     };
-
-    // REACT ES6 classes don't autobind, so bind it in the constructor
-    // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
-    this.toggleLike = this.toggleLike.bind(this);
-    this.onKeyPress = this.onKeyPress.bind(this);
-    this.onCommentChange = this.onCommentChange.bind(this);
-    this.commentDisabled = this.commentDisabled.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,12 +26,12 @@ class Card extends Component {
         toastr.error(this.likeState(nextProps.likeState).error);
   }
 
-  toggleLike() {
+  toggleLike = () => {
     if (this.likeIsDirty()) return;
 
     if (this.liked()) this.props.unlike(this.props.post.id);
     else this.props.like(this.props.post.id);
-  }
+  };
 
   liked() {
     return this.props.post.likes.some(
@@ -68,13 +61,13 @@ class Card extends Component {
         this.setState({ comment: '' });
   }
 
-  onKeyPress(target) {
+  onKeyPress = target => {
     if (target.charCode === 13) this.addComment();
-  }
+  };
 
-  onCommentChange(event) {
+  onCommentChange = event => {
     this.setState({ comment: event.target.value });
-  }
+  };
 
   addComment() {
     this.setState({ commentDisabled: true });
@@ -86,9 +79,9 @@ class Card extends Component {
     return state[this.props.post.id] || {};
   }
 
-  commentDisabled() {
+  commentDisabled = () => {
     return this.commentState().status === 'saving';
-  }
+  };
 
   render() {
     return (

@@ -8,14 +8,6 @@ import User from './User';
 import './Styles.css';
 
 class View extends Component {
-  constructor(props) {
-    super(props);
-
-    // REACT ES6 classes don't autobind, so bind it in the constructor
-    // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
-    this.onTryAgainClick = this.onTryAgainClick.bind(this);
-  }
-
   componentDidMount() {
     if (this.props.session.status !== 'authenticated') this.props.authenticate();
   }
@@ -25,7 +17,7 @@ class View extends Component {
       this.props.history.replace('/login');
   }
 
-  onTryAgainClick() {
+  onTryAgainClick = () => {
     this.props.history.push('/login');
   }
 

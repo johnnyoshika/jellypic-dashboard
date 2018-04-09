@@ -2,21 +2,13 @@ import React, { Component } from 'react';
 import './Styles.css';
 
 class View extends Component {
-  constructor(props) {
-    super(props);
-
-    // REACT ES6 classes don't autobind, so bind it in the constructor
-    // as suggested here: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#es6-classes
-    this.reload = this.reload.bind(this);
-  }
-
   componentDidMount() {
     this.props.setUp();
   }
 
-  reload() {
+  reload = () => {
     this.props.skipWaiting();
-  }
+  };
 
   render() {
     return (() => {
