@@ -24,6 +24,11 @@ Project was bootstrapped with [Create React App](https://github.com/facebookincu
 * use Node version 8.9.4
 * `npm install`
 
+## Development
+* Make sure [Backend Server](https://github.com/johnnyoshika/jellypic) is running
+* `npm start`
+* Navigate to: [http://localhost:3000/](http://localhost:3000/)
+
 ## Build for Production
 * `npm run build`
 
