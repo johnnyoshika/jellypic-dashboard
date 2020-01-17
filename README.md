@@ -21,7 +21,7 @@ Project was bootstrapped with [Create React App](https://github.com/facebookincu
 ## Setup
 * `git clone {repository url}`
 * `cd` into new directory
-* use Node version 8.9.4
+* use Node version 8.X (e.g. 8.17.0)
 * `npm install`
 
 ## Development
