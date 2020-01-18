@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Card from '../../../components/Card';
-import WithInfiniteScroll from '../../../components/WithInfiniteScroll';
-import { selectPost } from '../../../utils/selectors';
+import Card from 'components/Card';
+import WithInfiniteScroll from 'components/WithInfiniteScroll';
+import { selectPost } from 'utils/selectors';
 import './Styles.css';
 
 const InfiniteScroll = WithInfiniteScroll(

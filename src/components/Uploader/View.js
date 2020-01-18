@@ -1,6 +1,6 @@
 import React from 'react';
 import { toastr } from 'react-redux-toastr';
-import loadScript from '../../utils/loadScript';
+import loadScript from 'utils/loadScript';
 
 const Uploader = ({
   savePost,

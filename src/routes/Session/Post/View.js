@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Card from '../../../components/Card';
-import WithStatus from '../../../components/WithStatus';
-import { selectPost } from '../../../utils/selectors';
+import Card from 'components/Card';
+import WithStatus from 'components/WithStatus';
+import { selectPost } from 'utils/selectors';
 import './Styles.css';
 
 const getPost = ({ post, entities }) => selectPost(entities, post.id);

@@ -1,7 +1,7 @@
 import { dispatch } from '@rematch/core';
 import { normalize } from 'normalizr';
-import request from '../utils/request';
-import { user as userSchema, profile as profileSchema } from '../store/schema';
+import request from 'utils/request';
+import { user as userSchema, profile as profileSchema } from 'store/schema';
 
 export default {
   state: {
