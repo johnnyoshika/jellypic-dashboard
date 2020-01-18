@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { toastr } from 'react-redux-toastr';
 import loadScript from '../../utils/loadScript';
 
-class View extends Component {
-  uploadWidget = () => {
+const Uploader = ({
+  savePost,
+  history,
+  children
+}) => {
+
+  const uploadWidget = () => {
     loadScript('//widget.cloudinary.com/global/all.js').then(
-      () => this.showUploader(),
+      () => showUploader(),
       () => {
         toastr.error(`Can't connect to network. Please try again!`);
       }
     );
   };
 
-  showUploader() {
+  const showUploader = () => {
     window.cloudinary.openUploadWidget(
       {
         cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
@@ -24,8 +29,8 @@ class View extends Component {
       },
       (error, result) => {
         if (!error) {
-          this.props.savePost(result.map(image => image.public_id));
-          this.props.history.push('/');
+          savePost(result.map(image => image.public_id));
+          history.push('/');
           return;
         }
 
@@ -34,9 +39,9 @@ class View extends Component {
     );
   }
 
-  render() {
-    return <a onClick={this.uploadWidget}>{this.props.children}</a>;
-  }
-}
+  return (
+    <a onClick={uploadWidget}>{children}</a>
+  );
+};
 
-export default View;
+export default Uploader;
