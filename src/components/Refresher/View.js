@@ -9,7 +9,7 @@ const Refresher = ({
 
   useEffect(() => {
     setUp();
-  }, []);
+  }, [setUp]);
 
   const reload = () => skipWaiting();
 

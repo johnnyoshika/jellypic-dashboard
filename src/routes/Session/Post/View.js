@@ -20,7 +20,7 @@ const PostView = ({
   
   useEffect(() => {
     fetchPost(parseInt(id, 10));
-  }, []);
+  }, [fetchPost, id]);
 
   return (
     <div className="post-container">

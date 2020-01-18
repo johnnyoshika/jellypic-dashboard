@@ -20,7 +20,7 @@ const HomeView = ({
 
   useEffect(() => {
     fetchLatest();
-  }, []);
+  }, [fetchLatest]);
 
   return (
     <div className="home-container">
