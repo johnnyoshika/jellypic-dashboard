@@ -16,9 +16,9 @@ const Comment = ({
       </div>
       {session.user === comment.user.id && (
         <div className="pull-right">
-          <a onClick={() => deleteComment(postId, comment.id)}>
+          <button className="button-link" onClick={() => deleteComment(postId, comment.id)}>
             <i className="fa fa-times-circle" aria-hidden="true" />
-          </a>
+          </button>
         </div>
       )}
       {comment.text}
