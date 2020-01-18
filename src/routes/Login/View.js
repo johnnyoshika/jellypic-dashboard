@@ -15,11 +15,11 @@ const Login = ({
 
   useEffect(() => {
     checkFacebook();
-  }, []);
+  }, [checkFacebook]);
 
   useEffect(() => {
     if (login.status === 'success') history.push('/');
-  }, [login.status]);
+  }, [login.status, history]);
 
   const disabled = () => login.status === 'processing' || login.status === 'success';
 

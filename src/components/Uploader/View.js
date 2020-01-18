@@ -40,7 +40,7 @@ const Uploader = ({
   }
 
   return (
-    <a onClick={uploadWidget}>{children}</a>
+    <button className="button-link" onClick={uploadWidget}>{children}</button>
   );
 };
 

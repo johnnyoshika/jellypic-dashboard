@@ -136,7 +136,7 @@ class Card extends Component {
           </div>
           <div className="card-info-add-comment">
             <div>
-              <a onClick={this.toggleLike}>
+              <button className="button-link" onClick={this.toggleLike}>
                 <i
                   className={
                     'fa fa-heart fa-2x' +
@@ -145,7 +145,7 @@ class Card extends Component {
                   }
                   aria-hidden="true"
                 />
-              </a>
+              </button>
             </div>
             <div>
               <input

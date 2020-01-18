@@ -33,6 +33,20 @@ a:hover {
   color: #555;
 }
 
+/* https://github.com/facebook/create-react-app/issues/4141#issuecomment-426172387 */
+.button-link {
+  color: #000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+.button-link:hover {
+  color: #555;
+}
+
 /* buttons borrowed from Bootstrap 3 */
 .btn {
   display: inline-block;
