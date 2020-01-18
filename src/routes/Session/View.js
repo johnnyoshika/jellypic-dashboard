@@ -90,12 +90,12 @@ class View extends Component {
           <div className="gutter" />
         </div>
         {this.renderUploaderState()}
-        <React.Fragment>
+        <>
           <Route exact path="/" component={Home} />
           <Route path="/posts/:id" component={Post} />
           <Route path="/subscription" component={Subscription} />
           <Route path="/users/:id" component={User} />
-        </React.Fragment>
+        </>
       </div>
     );
   }

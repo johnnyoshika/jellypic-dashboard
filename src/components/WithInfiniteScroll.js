@@ -44,10 +44,10 @@ export default (
       const Status = WithStatus(errorConditional, spinnerConditional);
       const TryAgain = WithTryAgain(errorConditional, onInfiniteScrollFetch);
       return (
-        <React.Fragment>
+        <>
           <Status {...this.props} />
           <TryAgain {...this.props} />
-        </React.Fragment>
+        </>
       );
     }
   };

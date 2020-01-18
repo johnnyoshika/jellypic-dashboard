@@ -9,7 +9,7 @@ import './Toastr.css';
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
+      <>
         <Refresher />
         <Router>
           <Switch>
@@ -26,7 +26,7 @@ class App extends Component {
           transitionOut="bounceOut"
           progressBar={false}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
