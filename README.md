@@ -29,6 +29,15 @@ Project was bootstrapped with [Create React App](https://github.com/facebookincu
 * `npm start`
 * Navigate to: [http://localhost:3000/](http://localhost:3000/)
 
+## HTTPS and Facebook Login
+* Facebook only allows login from HTTPS pages.
+* To serve pages over HTTPS, start server after [setting HTTPS environment variable])https://create-react-app.dev/docs/using-https-in-development/_:
+  * Windows (cmd.exe): `set HTTPS=true&&npm start`
+  * Windows (Powershell): `($env:HTTPS = "true") -and (npm start)`
+  * Linux, macOS (Bash): `HTTPS=true npm start`
+* Server will use a self-signed certificate, so web browser will almost definitely display a warning
+* Once you log in with Facebook and proper authentication cookie has been set by our API, then you can revert back to non-secure HTTP. Remember that you need to close the shell and start a new session to clear out the env variable.
+
 ## Build for Production
 * `npm run build`
 
