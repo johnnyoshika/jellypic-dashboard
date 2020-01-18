@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Card from '../../../components/Card';
 import WithInfiniteScroll from '../../../components/WithInfiniteScroll';
 import { selectPost } from '../../../utils/selectors';
@@ -11,26 +11,35 @@ const InfiniteScroll = WithInfiniteScroll(
   props => props.home.status === 'loading'
 );
 
-class HomeView extends Component {
-  componentDidMount() {
-    this.props.fetchLatest();
-  }
+const HomeView = ({
+  home,
+  entities,
+  fetchLatest,
+  fetchNext
+}) => {
 
-  render() {
-    return (
-      <div className="home-container">
-        <div className="gutter" />
-        <div className="home-main">
-          <InfiniteScroll message={this.props.home.error} {...this.props}>
-            {this.props.home.posts.map(id => (
-              <Card key={id} post={selectPost(this.props.entities, id)} />
-            ))}
-          </InfiniteScroll>
-        </div>
-        <div className="gutter" />
+  useEffect(() => {
+    fetchLatest();
+  }, []);
+
+  return (
+    <div className="home-container">
+      <div className="gutter" />
+      <div className="home-main">
+        <InfiniteScroll
+          message={home.error}
+          home={home}
+          fetchNext={fetchNext}
+          fetchLatest={fetchLatest}
+        >
+          {home.posts.map(id => (
+            <Card key={id} post={selectPost(entities, id)} />
+          ))}
+        </InfiniteScroll>
       </div>
-    );
-  }
-}
+      <div className="gutter" />
+    </div>
+  );
+};
 
 export default HomeView;

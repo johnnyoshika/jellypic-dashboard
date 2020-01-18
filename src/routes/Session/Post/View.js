@@ -1,41 +1,44 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Card from '../../../components/Card';
 import WithStatus from '../../../components/WithStatus';
 import { selectPost } from '../../../utils/selectors';
 import './Styles.css';
 
-const getPost = props => selectPost(props.entities, props.post.id);
+const getPost = ({ post, entities }) => selectPost(entities, post.id);
 
 const Status = WithStatus(
-  props => props.post.status === 'error' && !getPost(props),
-  props => props.post.status === 'loading' && !getPost(props)
+  ({ post, entities }) => post.status === 'error' && !getPost({ post, entities }),
+  ({ post, entities }) => post.status === 'loading' && !getPost({ post, entities })
 );
 
-class PostView extends Component {
-  componentDidMount() {
-    this.props.fetchPost(parseInt(this.props.match.params.id, 10));
-  }
+const PostView = ({
+  match: { params: { id } },
+  post,
+  entities,
+  fetchPost
+}) => {
+  
+  useEffect(() => {
+    fetchPost(parseInt(id, 10));
+  }, []);
 
-  renderPost() {
-    return <Card key={this.props.match.params.id} post={getPost(this.props)} />;
-  }
-
-  render() {
-    return (
-      <div className="post-container">
-        <div className="gutter" />
-        <div className="post-main">
-          <Status
-            message={this.props.post.error}
-            {...this.props}
-          >
-            {getPost(this.props) && this.renderPost()}
-          </Status>
-        </div>
-        <div className="gutter" />
+  return (
+    <div className="post-container">
+      <div className="gutter" />
+      <div className="post-main">
+        <Status
+          message={post.error}
+          post={post}
+          entities={entities}
+        >
+          {getPost({ post, entities }) && (
+            <Card key={id} post={getPost({ post, entities })} /> 
+          )}
+        </Status>
       </div>
-    );
-  }
-}
+      <div className="gutter" />
+    </div>
+  );
+};
 
 export default PostView;
