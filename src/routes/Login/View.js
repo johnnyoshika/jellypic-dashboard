@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import WithError from '../../components/WithError';
+import WithError from 'components/WithError';
 import './Styles.css';
 
 const Status = WithError(

@@ -1,7 +1,7 @@
 import { dispatch } from '@rematch/core';
 import { normalize } from 'normalizr';
-import request from '../utils/request';
-import { post as postSchema } from '../store/schema';
+import request from 'utils/request';
+import { post as postSchema } from 'store/schema';
 
 const makePayload = (postId, data) => {
   const payload = {};

@@ -1,5 +1,5 @@
 import { dispatch } from '@rematch/core';
-import request from '../utils/request';
+import request from 'utils/request';
 
 const ensureFacebookSdkLoaded = callback => {
   if (window.fbAsyncInit) return callback();

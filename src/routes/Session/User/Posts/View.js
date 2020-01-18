@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import WithInfiniteScroll from '../../../../components/WithInfiniteScroll';
-import { selectPost } from '../../../../utils/selectors';
+import WithInfiniteScroll from 'components/WithInfiniteScroll';
+import { selectPost } from 'utils/selectors';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 
