@@ -4,7 +4,8 @@ const fallbackMessage = 'Error connecting to the server!';
 
 const parseJSON = response =>
   new Promise((resolve, reject) => {
-    if (response.headers.get('content-length') === '0') {
+    const contentType = response.headers.get("content-type");
+    if (!contentType || contentType.indexOf('application/json') === -1) {
       resolve({
         status: response.status,
         ok: response.ok,
