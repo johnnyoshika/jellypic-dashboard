@@ -1,5 +1,7 @@
 # Jellypic Dashboard
 
+>Note: This app is outdated. The the GraphQL client  here instead: https://github.com/johnnyoshika/jellypic-client
+
 Jellypic is a sample app to demonstrate the capabilities of Progressive Web Apps, including:
 * Offline first readonly in:
   * Chrome, Firefox, Opera
